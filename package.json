@@ -1,0 +1,36 @@
+{
+  "name": "tzekid.github.io",
+  "version": "0.0.1",
+  "description": "It's a site",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tzekid/tzekid.github.io.git"
+  },
+  "keywords": [
+    "site"
+  ],
+  "author": "Mircea Ilie Ploscaru <tzekid2010@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tzekid/tzekid.github.io/issues"
+  },
+  "homepage": "https://github.com/tzekid/tzekid.github.io#readme",
+  "dependencies": {
+    "coffee-script": "^1.12.4",
+    "gulp": "^3.9.1",
+    "gulp-live-server": "0.0.30",
+    "gulp-open": "^2.0.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-pug": "^3.2.0",
+    "gulp-pug-lint": "^0.1.6",
+    "gulp-stylelint": "^3.9.0",
+    "gulp-stylus": "^2.6.0",
+    "gulp-watch": "^4.3.11",
+    "pug": "^2.0.0-beta11",
+    "stylus": "^0.54.5"
+  }
+}
