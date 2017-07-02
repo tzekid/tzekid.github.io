@@ -1,0 +1,8 @@
+files: ./src/index.pug
+run: pug %file% -o .
+---
+files: ./src/articles/*.pug
+run: pug %file% -o ./articles/
+---
+files: ./src/*.styl
+run: stylus %file% -o .

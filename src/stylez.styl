@@ -1,0 +1,79 @@
+.quando
+  font-family: 'Quando'
+
+.josefin
+  font-family: 'Josefin Sans'
+
+.red
+  color: #d64937
+
+.red-darker
+  color: #C1292E
+
+
+
+footer
+header
+  &::after
+      width: 100%
+      height: 5px
+      position: absolute
+      left: 0
+      content: ''
+
+header::after
+  background: linear-gradient(to right, #FDFFFC, #C1292E 33%, #235789 66%, #161925 100%)
+  top: 0
+
+footer::after
+  background: linear-gradient(to left, #FDFFFC, #C1292E 33%, #235789 66%, #161925 100%)
+  bottom: 0
+
+html
+  width: 100%
+  height: 100%
+
+
+
+h1.logo
+  padding: 0px
+  font-size: 60px  
+
+.container
+  width: 920px
+  height: 100vh
+  display: flex
+  margin-left: auto
+  margin-right: auto
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  p
+    margin: 0 0
+    padding: 0 0
+    font-size: 26px
+  .big
+    font-size: 36px
+  .small
+    font-size: 22px
+  .smaller
+    font-size: 18px
+    font-weight: 200
+    .quando
+      font-size: 14px
+
+		
+@media screen and (max-width: 920px)
+  .container
+    width: 80vw
+    p
+      font-size: 20px
+    .big
+      font-size: 28px
+    .small
+      font-size: 20px
+
+
+@media screen and (max-width: 500px)
+  h1.logo
+    font-size: 40px
