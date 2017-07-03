@@ -8,6 +8,7 @@ I use [guardian](https://github.com/f/guardian) for my file-watch, [fast-http-se
 
 ```
 # yarn global add pug stylus 
+$ yarn install
 ```
 
 ## Usage
