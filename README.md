@@ -7,7 +7,7 @@ TODO: Write a description here
 I use [guardian](https://github.com/f/guardian) for my file-watch, [fast-http-server](https://github.com/tzekid/fast-http-server) (everything is hosted on Github) and [yarn](https://yarnpkg.com/en/docs/install) for installing stuff.
 
 ```
-# yarn global add pug stylus 
+# yarn global add pug pug-cli stylus 
 $ yarn install
 ```
 
@@ -17,7 +17,11 @@ Open ```guardian ``` and ```fast-http-server``` in separate tabs in your termina
 
 ## Development
 
-TODO: Write development instructions here
+TODO(s):  
+[ ] logo -> game  
+[ ] stylish form popup  
+[ ] add some showcase examples  
+[ ] write my first article  
 
 ## Contributing
 

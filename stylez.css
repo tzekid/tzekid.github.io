@@ -101,7 +101,7 @@ h1.logo {
 }
 h1.art_logo {
   width: 860px;
-  margin-top: 24px;
+  margin-top: 48px;
   margin-bottom: 12px;
   font-size: 32px;
   text-align: center;
@@ -210,4 +210,14 @@ a.go_back {
   bottom: 0;
   font-size: 1.2em;
   text-decoration: none;
+}
+/****************************************/
+/*************** SHOWCASE ***************/
+/****************************************/
+.art_title.big_title h1 {
+  border: none;
+  font-size: 48px;
+}
+.markdown.showcase {
+  font-size: 20px;
 }

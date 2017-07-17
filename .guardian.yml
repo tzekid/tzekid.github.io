@@ -6,3 +6,6 @@ run: pug %file% -o ./articles/
 ---
 files: ./src/*.styl
 run: stylus %file% -o .
+---
+files: ./src/showcase/*.pug
+run: pug %file% -o ./showcase/
