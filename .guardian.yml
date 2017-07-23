@@ -1,11 +1,11 @@
 files: ./src/index.pug
-run: pug %file% -o .
+run: pug -P %file% -o .
 ---
 files: ./src/articles/*.pug
-run: pug %file% -o ./articles/
+run: pug -P %file% -o ./articles/
 ---
 files: ./src/*.styl
 run: stylus %file% -o .
 ---
 files: ./src/showcase/*.pug
-run: pug %file% -o ./showcase/
+run: pug -P %file% -o ./showcase/

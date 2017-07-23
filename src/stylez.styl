@@ -2,19 +2,21 @@
 /************** GLOBALS *****************/
 /****************************************/
 
+@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css)
+
 .quando
   font-family: 'Quando'
 
 .josefin
   font-family: 'Josefin Sans'
 
+$red = #d64937
 .red
-  color: #d64937
+  color: $red
 
+$red-darker = #C1292E
 .red-darker
-  color: #C1292E
-
-
+  color: $red-darker
 
 footer
 header
@@ -33,8 +35,8 @@ footer::after
   background: linear-gradient(to left, #FDFFFC, #C1292E 33%, #235789 66%, #161925 100%)
   bottom: 0
 
-body
 html
+body
   width: 100%
   height: 100%
 
@@ -106,7 +108,7 @@ h1.logo
 
 h1.art_logo
   width: 860px
-  margin-top: 48px
+  margin-top: 36px
   margin-bottom: 12px
   font-size: 32px
   text-align: center
@@ -208,12 +210,44 @@ a.go_back
   flex-direction: column
   align-items: center
   justify-content: center
-
+  
   bottom: 0
+  margin-top: 1.5em
+  margin-bottom: 2em
 
   font-size: 1.2em
-
   text-decoration: none
+
+/************ Checkboxes ****************/
+/*  adapted from @barnettjw 's codepen  */
+input[type=checkbox] { display:none; }
+input[type=checkbox] + label:before
+  font-family: "FontAwesome"
+  display: inline-block
+
+input[type=checkbox]:not(:checked) + label:before
+  color: #d64937
+  letter-spacing: 10px
+  content: "\f096" /* unchecked icon */
+
+
+input[type=checkbox]:checked + label:before
+  color: forestgreen
+  letter-spacing: 7px;
+  content: "\f046"; /*checked icon */
+  transition-property: opacity
+
+label
+  cursor: pointer
+  padding: 16px 16px 16px 16px
+  z-index: 0px
+  font-size: 20px
+/****************************************/
+
+code
+  background: #eee
+  padding: 2px 2px
+  font-size: 13px
 
 /****************************************/
 /*************** SHOWCASE ***************/
