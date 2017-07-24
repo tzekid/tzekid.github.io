@@ -150,7 +150,7 @@ Rerun with --error-trace to show a complete error trace.
 <h3>Union Types and Error Handling</h3>
 <p>We don’t say that guess should be a number, but the compiler infers the variable type from the <code>gets</code> function - because <code>gets</code> can be either a <code>String</code> when the user types in something or a <code>Nil</code> when he doesn’t give any input, the Crystal compiler prepares itself for both outputs. <code>(String | Nil)</code> is called the <a href="https://crystal-lang.org/docs/syntax_and_semantics/union_types.html" target="_blank">Union Type</a> of String and Nil.</p>
 <p>The compiler warns us that <code>guess</code> can be a <code>Nil</code> at compile time, which would break the whole program and doesn’t allow us to go any further until we fix it.</p>
-<p>We just need to say, if the user gives an input then continue otherwise skip the whole code. We do that with something like so:</p>
+<p>We just need to say that we want a valid input from the user, otherwise the whole code block should be ignored. We do that with something like:</p>
 <pre><code class="highlight-ruby"># ...
 print &quot;Please input your guess: &quot;
 if guess = gets
@@ -193,6 +193,8 @@ if guessed_number &lt; secret_number
 elsif guessed_number &gt; secret_number
   # ...
 </code></pre>
+<p>In the code block after <code>begin</code>, ie. in the one line, we expect an exception to be raised if the user doesn’t enter a valid number. If the user happens to do so, the exception is catched and the program <code>rescue</code>d, ie. it will not just go down, crash and burn.</p>
+<p>It will instead run the code block after the <code>rescue</code> tag, where the behaviour of catching such an exception is defined. Take care of how you use the <code>begin..rescue</code> expression, because by supressing exceptions and not handling them properly you can introduce bugs into your code.</p>
 <p>The code should now compile. Try it out ! If the user doesn’t enter a valid number, you can now see the error message we implemented.</p>
 <h2>Looping</h2>
 <p>The <code>loop</code> keyword gives us an infinite loop. Add that now to give users more chances at guessing the number:</p>

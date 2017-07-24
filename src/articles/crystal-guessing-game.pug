@@ -152,7 +152,7 @@ block default
 
         The compiler warns us that `guess` can be a `Nil` at compile time, which would break the whole program and doesn't allow us to go any further until we fix it.  
 
-        We just need to say, if the user gives an input then continue otherwise skip the whole code. We do that with something like so:  
+        We just need to say that we want a valid input from the user, otherwise the whole code block should be ignored. We do that with something like:  
         ```ruby
         # ...
         print "Please input your guess: "
@@ -203,6 +203,10 @@ block default
         elsif guessed_number > secret_number
           # ...
         ```  
+
+        In the code block after `begin`, ie. in the one line, we expect an exception to be raised if the user doesn't enter a valid number. If the user happens to do so, the exception is catched and the program `rescue`d, ie. it will not just go down, crash and burn.  
+        
+        It will instead run the code block after the `rescue` tag, where the behaviour of catching such an exception is defined. Take care of how you use the `begin..rescue` expression, because by supressing exceptions and not handling them properly you can introduce bugs into your code.   
 
         The code should now compile. Try it out ! If the user doesn't enter a valid number, you can now see the error message we implemented.  
 
