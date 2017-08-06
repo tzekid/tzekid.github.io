@@ -311,7 +311,7 @@ next unless guess = gets
 unless guess = guess.to_i?
 #...
 </code></pre>
-<p>The compiler will recognize that we handled the negative case first and that there are no runtime errors left to handle.</p>
+<p>That way, the compiler will recognize that we handled the negative case first and that there are no runtime errors left to handle and let get rid of the extra indentation.</p>
 <p>This is the final version of the code:</p>
 <pre><code class="highlight-ruby"># src/guessing_game.cr
 puts &quot;Guess a number!&quot;
