@@ -51,14 +51,14 @@
 <p>For the instructions on installing crystal itself, just:</p>
 <p><input id="install" type="checkbox" /><label for="install"> go to the <a href="https://crystal-lang.org/docs/installation/" target="_blank">official docs</a> and follow the instructions for your platform.</label></p>
 <p>To set up a new project you’ll have to <code>init</code>ialize it like so:</p>
-<pre><code class="highlight-bash">λ crystal init app GuessingGame
-λ cd GuessingGame
+<pre><code class="highlight-bash">λ crystal init app guessing_game
+λ cd guessing_game
 </code></pre>
-<p>The first command, <code>crystal init</code>, takes <code>app</code> as the first argument which creates an application skeleton with the second argument, <code>GuessingGame</code>, as the project name.</p>
+<p>The first command, <code>crystal init</code>, takes <code>app</code> as the first argument which creates an application skeleton with the second argument, <code>guessing_game</code>, as the project name.</p>
 <h2>Processing a Guess</h2>
-<p>Our main file is in <code>src/GussingGame.cr</code>. Ignore <code>require</code> and <code>module</code> for now; better yet, delete everything in the file and start from zero.</p>
+<p>Our main file is in <code>src/guessing_game.cr</code>. Ignore <code>require</code> and <code>module</code> for now; better yet, delete everything in the file and start from zero.</p>
 <p>The first part of the program will ask for user input, process that input, and check that the input is in the expected form.</p>
-<pre><code class="highlight-ruby"># src/GuessingGame.cr
+<pre><code class="highlight-ruby"># src/guessing_game.cr
 puts &quot;Guess a number!&quot;
 print &quot;Please input your guess: &quot;
 
@@ -71,13 +71,13 @@ puts &quot;You guessed: #{guess}&quot;
 <pre><code class="highlight-ruby">x = 5
 y = 10
 
-puts &quot;x = #{x} and y = #{y}&quot; #&gt; &quot;x = 5 and y = 10&quot;
+puts &quot;x = #{x} and y = #{y}&quot; # =&gt; &quot;x = 5 and y = 10&quot;
 </code></pre>
-<p>The <code>#</code> symbolizes the beginning of a comment. The comment will take up the rest of the line. As of yet there is no selective or multiline comment syntax in Crystal. In the future I’ll use <code>#&gt;</code> to show the output of a command.</p>
+<p>The <code>#</code> symbolizes the beginning of a comment. The comment will take up the rest of the line. As of yet there is no selective or multiline comment syntax in Crystal. The <code># =&gt;</code> syntax is officially used to describe the output of a line.</p>
 <p><input id="assignment_strings" type="checkbox" /><label for="assignment_strings"> (optional) You can read more about <a href="https://crystal-lang.org/docs/syntax_and_semantics/assignment.html">variable assignment</a> or more about <a href="https://crystal-lang.org/docs/syntax_and_semantics/literals/string.html">strings</a> on the official docs.</label></p>
 <h3>Testing the first part</h3>
 <p>You can run the program so far like so:</p>
-<pre><code class="highlight-bash">λ crystal src/GuessingGame.cr
+<pre><code class="highlight-bash">λ crystal src/guessing_game.cr
 Guess a number!
 Please input your guess: 420
 You guessed: 420
@@ -86,7 +86,7 @@ You guessed: 420
 <h2>Generating a secret number</h2>
 <p>Next, we need to generate a secret number that the user will try to guess. The secret number should be different every time so the game is fun to play more than once. Let’s use a random number between 1 and 100 so the game isn’t too difficult.</p>
 <p>Let’s start using the built in <code>rand</code> function.</p>
-<pre><code class="highlight-ruby"># src/GuessingGame.cr
+<pre><code class="highlight-ruby"># src/guessing_game.cr
 puts &quot;Guess a number!&quot;
 
 secret_number = rand(100)
@@ -97,18 +97,18 @@ guess = gets
 
 puts &quot;You guessed: #{guess}&quot;
 </code></pre>
-<p>Generating a simple random number in Crystal is fairly easy with the help of the <code>rand</code> function. It takes an Int as the max range, so giving it 100 will generate numbers between 0 and 99.</p>
+<p>Generating a simple random number in Crystal is fairly easy with the help of the <code>rand</code> function. It takes an Int as the max range, so giving it 100 will generate numbers between 1 and 100.</p>
 <p><input id="rand_api" type="checkbox" /><label for="rand_api"> (optional) You can have a glance at the <a href="https://crystal-lang.org/api/master/Random.html" target="_blank">Random</a> module on the <a href="https://crystal-lang.org/api/master/" target="_blank">API docs</a>.</label></p>
 <p>It is always good to check the docs when you don’t understand something, or when a StackOverflow answers get you only so far. At this point in time the documentation is extensive, but far from complete, and because the Crystal lang is written in itself, you can easily dive into the source code at any time to get a better understanding of the undelying concepts.</p>
 <p>The second line that we added to the code prints the secret number. This is useful while we’re developing the program to be able to test it, but we’ll delete it from the final version. It’s not much of a game if the program prints the answer as soon as it starts!</p>
 <p>Try running the program a few times:</p>
-<pre><code class="highlight-bash">λ cr src/GuessingGame.cr
+<pre><code class="highlight-bash">λ cr src/guessing_game.cr
 Guess a number!
 The secret number is: 30
 Please input your guess: 20
 You guessed: 20
 
-λ cr src/GuessingGame.cr
+λ cr src/guessing_game.cr
 Guess a number!
 The secret number is: 96
 Please input your guess: 92
@@ -116,7 +116,7 @@ You guessed: 92
 </code></pre>
 <h2>Comparing guesses</h2>
 <p>Now that we have user input and a random number, we can compare them:</p>
-<pre><code class="highlight-ruby"># src/GuessingGame.cr
+<pre><code class="highlight-ruby"># src/guessing_game.cr
 puts &quot;Guess a number!&quot;
 
 secret_number = rand(100)
@@ -138,8 +138,8 @@ end
 <p>Now, we could try using an <code>if, else</code> expression to compare our guesses.</p>
 <p><input id="if_and_co." type="checkbox" /><label for="if_and_co."> You can read more about <a href="https://crystal-lang.org/docs/syntax_and_semantics/if.html" target="_blank">the <code>if</code> syntax</a> on the docs.</label></p>
 <p>But, if we try to compile the program we get errors:</p>
-<pre><code class="highlight-bash">λ crystal src/GuessingGame.cr
-Error in src/GuessingGame.cr:11: undefined method '&lt;' for Nil (compile-time type is (String | Nil))
+<pre><code class="highlight-bash">λ crystal src/guessing_game.cr
+Error in src/guessing_game.cr:11: undefined method '&lt;' for Nil (compile-time type is (String | Nil))
 
 if guess &lt; secret_number
          ^
@@ -167,8 +167,8 @@ end
 </code></pre>
 <h3>Type inference</h3>
 <p>By encapsulating <code>guess = gets</code> we ensure that when the <code>guess</code> is <em>not</em> <code>Nil</code>, the code block will run. If we tried to run the code, we’ll run in another problem!</p>
-<pre><code class="highlight-bash">λ cr src/GuessingGame.cr
-Error in src/GuessingGame.cr:10: no overload matches 'String#&lt;' with type Int32
+<pre><code class="highlight-bash">λ cr src/guessing_game.cr
+Error in src/guessing_game.cr:10: no overload matches 'String#&lt;' with type Int32
 Overloads are:
 - Comparable(T)#&lt;(other : T)
 
@@ -176,13 +176,13 @@ Overloads are:
 </code></pre>
 <p>This just means that the compiler expected a number (ie. an <code>Int</code>), but got a <code>String</code> instead. What we now need to do is convert the string to an integer; and another problem could arise from that too, namely users who do not enter valid numbers !</p>
 <p><input id="error_handling" type="checkbox" /><label for="error_handling"> (optional) Have a look at Crystals <a href="https://crystal-lang.org/docs/syntax_and_semantics/type_inference.html" target="_blank">Type inference</a> and <a href="https://crystal-lang.org/docs/syntax_and_semantics/exception_handling.html" target="_blank">Exception Handling</a> chapters.</label></p>
-<p>Converting an non-number string to an integer will raise an error - we will ‘rescue’ the error with an <code>begin..rescue</code> expression which is almost identical to eg. C#'s or Javas <code>try..catch</code>.</p>
+<p>Converting an non-number string to an integer will raise an error. If you come from a C# or JavaScript background your first instinct, as was mine, was to use a <code>try..catch</code>. In crystal you do not merely ‘catch’ the error, you ‘rescue’ it with the <code>begin..rescue</code> syntax which is more or less identical to the <code>try..catch</code> one.</p>
 <p>The code will now look something like so:</p>
 <pre><code class="highlight-ruby"># ...
 begin
   guessed_number = guess.to_i
 rescue
-  puts &quot;ERROR: this String cannot be converted to Int: #{guess}&quot;
+  puts &quot;#{guess} is not a number!&quot;
   exit 1
 end
 
@@ -198,7 +198,7 @@ elsif guessed_number &gt; secret_number
 <p>The code should now compile. Try it out ! If the user doesn’t enter a valid number, you can now see the error message we implemented.</p>
 <h2>Looping</h2>
 <p>The <code>loop</code> keyword gives us an infinite loop. Add that now to give users more chances at guessing the number:</p>
-<pre><code class="highlight-ruby"># src/GuessingGame.cr
+<pre><code class="highlight-ruby"># src/guessing_game.cr
 puts &quot;Guess a number!&quot;
 
 secret_number = rand(100)
@@ -210,7 +210,7 @@ loop do
     begin
       guessed_number = guess.to_i
     rescue
-      puts &quot;ERROR: this String cannot be converted to Int: #{guess}&quot;
+      puts &quot;#{guess} is not a number!&quot;
       exit 1
     end
 
@@ -228,7 +228,7 @@ end
 </code></pre>
 <p>As you can see, we’ve moved everything into a loop from the guess input prompt onward. Be sure to indent those lines and run the program again. Notice that there is a new problem because the program is doing exactly what we told it to do: ask for another guess forever! It doesn’t seem like the user can quit!</p>
 <p>The user could always halt the program by using the keyboard shortcut <code>Ctrl-C</code>. But there’s another way to escape this insatiable monster: if the user enters a non-number answer, the program will crash. The user can take advantage of that in order to quit, as shown here:</p>
-<pre><code class="highlight-bash">λ crystal src/GuessingGame.cr
+<pre><code class="highlight-bash">λ crystal src/guessing_game.cr
 Guess a number!
 The secret number is: 19
 Please input your guess: 42
@@ -244,7 +244,7 @@ ERROR: this String cannot be converted to Int: quit
 <p>Typing <code>quit</code> actually quits the game, but so will any other non-number input. However, this is suboptimal to say the least. We want the game to automatically stop when the correct number is guessed.</p>
 <h3>Quitting After a Correct Guess</h3>
 <p>Let’s program the game to quit when the user wins by adding a <code>break</code>:</p>
-<pre><code class="highlight-ruby"># src/GuessingGame.cr
+<pre><code class="highlight-ruby"># src/guessing_game.cr
 # ...
 if guessed_number &lt; secret_number
   puts &quot;Too small!&quot;
@@ -260,10 +260,10 @@ end
 <p>Not quiting if the user enters a string would make the whole experience more enjoying. For that, we could replace the <code>exit 1</code> from the <code>begin..rescue</code> expression with a <code>next</code>.</p>
 <p><input id="lhops" type="checkbox" /><label for="lhops"> (optional) You can read more about the <a href="https://crystal-lang.org/docs/syntax_and_semantics/control_expressions.html" target="_blank">Control expressions</a> from the docs. </label></p>
 <p>Now everything in the program should work as expected. Let’s delete the <code>puts</code> that outputs the secret number, and try to actually <code>build</code> the program!</p>
-<pre><code class="highlight-bash">λ crystal build src/GuessingGame.cr --release
+<pre><code class="highlight-bash">λ crystal build src/guessing_game.cr --release
 </code></pre>
-<p><code>build</code> compiles and packs your code into a runnable executable. The <code>--release</code> flag tells the compiler to apply optimizations which will make the program much faster, but the code will take longer to compile. You now have an executable <code>GuessingGame</code> which you can run. Let’s try running it:</p>
-<pre><code class="highlight-bash">λ ./GuessingGame
+<p><code>build</code> compiles and packs your code into a runnable executable. The <code>--release</code> flag tells the compiler to apply optimizations which will make the program much faster, but the code will take longer to compile. You now have an executable <code>guessing_game</code> which you can run. Let’s try running it:</p>
+<pre><code class="highlight-bash">λ ./guessing_game
 Guess a number!
 Please input your guess: 60
 You guessed: 60
@@ -277,8 +277,26 @@ Please input your guess: 40
 You guessed: 40
 You win!
 </code></pre>
+<h3>Refactoring</h3>
+<p>Even though it works, the syntax looks a bit off - using <code>begin..rescue</code> is not the most optimal way to do it.</p>
+<p>Until now <code>to_i</code> crashed upon failure, that’s why we made good use of the <code>begin..rescue</code> statement. There is, however, an alternative to <code>to_i</code>, namely <code>to_i?</code>. The <code>?</code> mark, which looks a lot like the <a href="https://en.wikipedia.org/wiki/Elvis_operator">Elvis operator</a>, gives out a <code>Nil</code> on failure instead of crashing. How awfuly nice!</p>
+<p>That means that we could catch the error with a simple <code>if</code> statement. We could be even more fancy, and use the <a href="https://crystal-lang.org/docs/syntax_and_semantics/unless.html"><code>unless</code></a> statement, which is a negated if. Using it instead of <code>if !</code> makes the code easier to read. The refactored bit looks like this:</p>
+<pre><code class="highlight-ruby"># src/guessing_game.cr
+# ...
+  puts &quot;You guessed: #{guess}&quot;
+
+  unless guess = guess.to_i?
+    puts &quot;#{guess} is not a number!&quot;
+    next
+  end
+
+  if guess &lt; secret_number
+# ...
+</code></pre>
+<p>Now, if the user enters something else rather than a number, the <code>to_i?</code> method will return a <code>Nil</code>, which will trigger the <code>unless</code> statement and skip to the <code>next</code> iteration in the loop.</p>
+<p>As you can also see, after the refactor the extra variable <code>guessed_number</code> is made redundant. We can now just use <code>guess</code> instead in the whole program.</p>
 <p>This is the final version of the code:</p>
-<pre><code class="highlight-ruby"># src/GuessingGame.cr
+<pre><code class="highlight-ruby"># src/guessing_game.cr
 puts &quot;Guess a number!&quot;
 
 secret_number = rand(100)
@@ -287,18 +305,16 @@ secret_number = rand(100)
 loop do
   print &quot;Please input your guess: &quot;
   if guess = gets
-    begin
-      guessed_number = guess.to_i
-    rescue
-      # puts &quot;ERROR: this String cannot be converted to Int: #{guess}&quot;
+    unless guess = guess.to_i?
+      puts &quot;#{guess} is not a number!&quot;
       next
     end
 
     puts &quot;You guessed: #{guess}&quot;
 
-    if guessed_number &lt; secret_number
+    if guess &lt; secret_number
       puts &quot;Too small!&quot;
-    elsif guessed_number &gt; secret_number
+    elsif guess &gt; secret_number
       puts &quot;Too big!&quot;
     else
       puts &quot;You win!&quot;
@@ -309,6 +325,7 @@ end
 </code></pre>
 <h2>Summary</h2>
 <p>At this point you’ve successfully built the guessing game! Congratulations!</p>
+<p>Many thanks to <a href="https://github.com/rx14">RX14</a> for providing loads of helpful feedback :)</p>
 <p>From this point I’d recommend you have a go at the <a href="https://crystal-lang.org/docs/" target="_blank">official Crystal Book</a> if you haven’t already, and <a href="https://github.com/askn/crystal-by-example" target="_blank">Crystal by Example</a> is another resource that is always handy for a beginner. For a great introduction into Crystal app development try <a href="http://serdardogruyol.com/building-a-realtime-chat-app-with-crystal-and-kemal" target="_blank">Building a realtime Chat application with Crystal and Kemal</a>.</p>
 
     </div>

@@ -199,6 +199,9 @@ a.go_back {
   font-size: 1.2em;
   text-decoration: none;
 }
+a.go_back blockquote {
+  font-size: 1;
+}
 /************ Checkboxes ****************/
 /*  adapted from @barnettjw 's codepen  */
 input[type=checkbox] {

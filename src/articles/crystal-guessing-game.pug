@@ -24,18 +24,18 @@ block default
 
         To set up a new project you'll have to `init`ialize it like so:
         ```bash
-        λ crystal init app GuessingGame
-        λ cd GuessingGame
+        λ crystal init app guessing_game
+        λ cd guessing_game
         ```  
         
-        The first command, `crystal init`, takes `app` as the first argument which creates an application skeleton with the second argument, `GuessingGame`, as the project name. 
+        The first command, `crystal init`, takes `app` as the first argument which creates an application skeleton with the second argument, `guessing_game`, as the project name. 
 
         ## Processing a Guess
-        Our main file is in `src/GussingGame.cr`. Ignore `require` and `module` for now; better yet, delete everything in the file and start from zero.
+        Our main file is in `src/guessing_game.cr`. Ignore `require` and `module` for now; better yet, delete everything in the file and start from zero.
 
         The first part of the program will ask for user input, process that input, and check that the input is in the expected form.  
         ```ruby
-        # src/GuessingGame.cr
+        # src/guessing_game.cr
         puts "Guess a number!"
         print "Please input your guess: "
 
@@ -51,17 +51,17 @@ block default
         x = 5
         y = 10
 
-        puts "x = #{x} and y = #{y}" #> "x = 5 and y = 10"
+        puts "x = #{x} and y = #{y}" # => "x = 5 and y = 10"
         ```
 
-        The `#` symbolizes the beginning of a comment. The comment will take up the rest of the line. As of yet there is no selective or multiline comment syntax in Crystal. In the future I'll use `#>` to show the output of a command. 
+        The `#` symbolizes the beginning of a comment. The comment will take up the rest of the line. As of yet there is no selective or multiline comment syntax in Crystal. The `# => ` syntax is officially used to describe the output of a line. 
         
         <input id="assignment_strings" type="checkbox" /><label for="assignment_strings"> (optional) You can read more about [variable assignment](https://crystal-lang.org/docs/syntax_and_semantics/assignment.html) or more about [strings](https://crystal-lang.org/docs/syntax_and_semantics/literals/string.html) on the official docs.</label>  
 
         ### Testing the first part
         You can run the program so far like so:
         ```bash
-        λ crystal src/GuessingGame.cr
+        λ crystal src/guessing_game.cr
         Guess a number!
         Please input your guess: 420
         You guessed: 420
@@ -74,7 +74,7 @@ block default
         Let's start using the built in `rand` function.   
 
         ```ruby
-        # src/GuessingGame.cr
+        # src/guessing_game.cr
         puts "Guess a number!"
 
         secret_number = rand(100)
@@ -86,7 +86,7 @@ block default
         puts "You guessed: #{guess}"
         ```  
 
-        Generating a simple random number in Crystal is fairly easy with the help of the `rand` function. It takes an Int as the max range, so giving it 100 will generate numbers between 0 and 99.  
+        Generating a simple random number in Crystal is fairly easy with the help of the `rand` function. It takes an Int as the max range, so giving it 100 will generate numbers between 1 and 100.  
 
         <input id="rand_api" type="checkbox" /><label for="rand_api"> (optional) You can have a glance at the <a href="https://crystal-lang.org/api/master/Random.html" target="_blank">Random</a> module on the <a href="https://crystal-lang.org/api/master/" target="_blank">API docs</a>.</label>  
 
@@ -96,13 +96,13 @@ block default
 
         Try running the program a few times:
         ```bash
-        λ cr src/GuessingGame.cr
+        λ cr src/guessing_game.cr
         Guess a number!
         The secret number is: 30
         Please input your guess: 20
         You guessed: 20
 
-        λ cr src/GuessingGame.cr
+        λ cr src/guessing_game.cr
         Guess a number!
         The secret number is: 96
         Please input your guess: 92
@@ -111,7 +111,7 @@ block default
         ## Comparing guesses  
         Now that we have user input and a random number, we can compare them:
         ```ruby
-        # src/GuessingGame.cr
+        # src/guessing_game.cr
         puts "Guess a number!"
 
         secret_number = rand(100)
@@ -137,8 +137,8 @@ block default
         
         But, if we try to compile the program we get errors:
         ```bash
-        λ crystal src/GuessingGame.cr
-        Error in src/GuessingGame.cr:11: undefined method '<' for Nil (compile-time type is (String | Nil))
+        λ crystal src/guessing_game.cr
+        Error in src/guessing_game.cr:11: undefined method '<' for Nil (compile-time type is (String | Nil))
 
         if guess < secret_number
                  ^
@@ -172,8 +172,8 @@ block default
         ### Type inference
         By encapsulating `guess = gets` we ensure that when the `guess` is *not* `Nil`, the code block will run. If we tried to run the code, we'll run in another problem!
         ```bash
-        λ cr src/GuessingGame.cr
-        Error in src/GuessingGame.cr:10: no overload matches 'String#<' with type Int32
+        λ cr src/guessing_game.cr
+        Error in src/guessing_game.cr:10: no overload matches 'String#<' with type Int32
         Overloads are:
         - Comparable(T)#<(other : T)
 
@@ -184,7 +184,7 @@ block default
         
         <input id="error_handling" type="checkbox" /><label for="error_handling"> (optional) Have a look at Crystals <a href="https://crystal-lang.org/docs/syntax_and_semantics/type_inference.html" target="_blank">Type inference</a> and <a href="https://crystal-lang.org/docs/syntax_and_semantics/exception_handling.html" target="_blank">Exception Handling</a> chapters.</label>  
 
-        Converting an non-number string to an integer will raise an error - we will 'rescue' the error with an `begin..rescue` expression which is almost identical to eg. C#'s or Javas `try..catch`.  
+        Converting an non-number string to an integer will raise an error. If you come from a C# or JavaScript background your first instinct, as was mine, was to use a `try..catch`. In crystal you do not merely 'catch' the error, you 'rescue' it with the `begin..rescue` syntax which is more or less identical to the `try..catch` one.  
 
         The code will now look something like so:
         ```ruby
@@ -192,7 +192,7 @@ block default
         begin
           guessed_number = guess.to_i
         rescue
-          puts "ERROR: this String cannot be converted to Int: #{guess}"
+          puts "#{guess} is not a number!"
           exit 1
         end
 
@@ -206,14 +206,14 @@ block default
 
         In the code block after `begin`, ie. in the one line, we expect an exception to be raised if the user doesn't enter a valid number. If the user happens to do so, the exception is catched and the program `rescue`d, ie. it will not just go down, crash and burn.  
         
-        It will instead run the code block after the `rescue` tag, where the behaviour of catching such an exception is defined. Take care of how you use the `begin..rescue` expression, because by supressing exceptions and not handling them properly you can introduce bugs into your code.   
+        It will instead run the code block after the `rescue` tag, where the behaviour of catching such an exception is defined. Take care of how you use the `begin..rescue` expression, because by supressing exceptions and not handling them properly you can introduce bugs into your code.  
 
         The code should now compile. Try it out ! If the user doesn't enter a valid number, you can now see the error message we implemented.  
 
         ## Looping  
         The `loop` keyword gives us an infinite loop. Add that now to give users more chances at guessing the number:
         ```ruby
-        # src/GuessingGame.cr
+        # src/guessing_game.cr
         puts "Guess a number!"
 
         secret_number = rand(100)
@@ -225,7 +225,7 @@ block default
             begin
               guessed_number = guess.to_i
             rescue
-              puts "ERROR: this String cannot be converted to Int: #{guess}"
+              puts "#{guess} is not a number!"
               exit 1
             end
 
@@ -246,7 +246,7 @@ block default
 
         The user could always halt the program by using the keyboard shortcut `Ctrl-C`. But there's another way to escape this insatiable monster: if the user enters a non-number answer, the program will crash. The user can take advantage of that in order to quit, as shown here:
         ```bash
-        λ crystal src/GuessingGame.cr
+        λ crystal src/guessing_game.cr
         Guess a number!
         The secret number is: 19
         Please input your guess: 42
@@ -265,7 +265,7 @@ block default
         ### Quitting After a Correct Guess  
         Let's program the game to quit when the user wins by adding a `break`:
         ```ruby
-        # src/GuessingGame.cr
+        # src/guessing_game.cr
         # ...
         if guessed_number < secret_number
           puts "Too small!"
@@ -286,12 +286,12 @@ block default
 
         Now everything in the program should work as expected. Let's delete the `puts` that outputs the secret number, and try to actually `build` the program!
         ```bash
-        λ crystal build src/GuessingGame.cr --release
+        λ crystal build src/guessing_game.cr --release
         ```  
 
-        `build` compiles and packs your code into a runnable executable. The `--release` flag tells the compiler to apply optimizations which will make the program much faster, but the code will take longer to compile. You now have an executable `GuessingGame` which you can run. Let's try running it:
+        `build` compiles and packs your code into a runnable executable. The `--release` flag tells the compiler to apply optimizations which will make the program much faster, but the code will take longer to compile. You now have an executable `guessing_game` which you can run. Let's try running it:
         ```bash
-        λ ./GuessingGame
+        λ ./guessing_game
         Guess a number!
         Please input your guess: 60
         You guessed: 60
@@ -306,9 +306,35 @@ block default
         You win!
         ```  
 
+        ### Refactoring
+
+        Even though it works, the syntax looks a bit off - using `begin..rescue` is not the most optimal way to do it.
+
+        Until now `to_i` crashed upon failure, that's why we made good use of the `begin..rescue` statement. There is, however, an alternative to `to_i`, namely `to_i?`. The `?` mark, which looks a lot like the [Elvis operator](https://en.wikipedia.org/wiki/Elvis_operator), gives out a `Nil` on failure instead of crashing. How awfuly nice!
+
+        That means that we could catch the error with a simple `if` statement. We could be even more fancy, and use the [`unless`](https://crystal-lang.org/docs/syntax_and_semantics/unless.html) statement, which is a negated if. Using it instead of `if ! ` makes the code easier to read. The refactored bit looks like this:
+
+        ```ruby
+        # src/guessing_game.cr
+        # ...
+          puts "You guessed: #{guess}"
+
+          unless guess = guess.to_i?
+            puts "#{guess} is not a number!"
+            next
+          end
+
+          if guess < secret_number
+        # ...
+        ```
+
+        Now, if the user enters something else rather than a number, the `to_i?` method will return a `Nil`, which will trigger the `unless` statement and skip to the `next` iteration in the loop.
+
+        As you can also see, after the refactor the extra variable `guessed_number` is made redundant. We can now just use `guess` instead in the whole program.
+
         This is the final version of the code:  
         ```ruby
-        # src/GuessingGame.cr
+        # src/guessing_game.cr
         puts "Guess a number!"
 
         secret_number = rand(100)
@@ -317,18 +343,16 @@ block default
         loop do
           print "Please input your guess: "
           if guess = gets
-            begin
-              guessed_number = guess.to_i
-            rescue
-              # puts "ERROR: this String cannot be converted to Int: #{guess}"
+            unless guess = guess.to_i?
+              puts "#{guess} is not a number!"
               next
             end
 
             puts "You guessed: #{guess}"
 
-            if guessed_number < secret_number
+            if guess < secret_number
               puts "Too small!"
-            elsif guessed_number > secret_number
+            elsif guess > secret_number
               puts "Too big!"
             else
               puts "You win!"
@@ -336,12 +360,15 @@ block default
             end
           end
         end
-        ```  
+        ```
 
         ## Summary
         At this point you've successfully built the guessing game! Congratulations!  
 
-        From this point I'd recommend you have a go at the <a href="https://crystal-lang.org/docs/" target="_blank">official Crystal Book</a> if you haven't already, and <a href="https://github.com/askn/crystal-by-example" target="_blank">Crystal by Example</a> is another resource that is always handy for a beginner. For a great introduction into Crystal app development try <a href="http://serdardogruyol.com/building-a-realtime-chat-app-with-crystal-and-kemal" target="_blank">Building a realtime Chat application with Crystal and Kemal</a>.  
-        
+        Many thanks to [RX14](https://github.com/rx14) for providing loads of helpful feedback :)
+
+        From this point I'd recommend you have a go at the <a href="https://crystal-lang.org/docs/" target="_blank">official Crystal Book</a> if you haven't already, and <a href="https://github.com/askn/crystal-by-example" target="_blank">Crystal by Example</a> is another resource that is always handy for a beginner. For a great introduction into Crystal app development try <a href="http://serdardogruyol.com/building-a-realtime-chat-app-with-crystal-and-kemal" target="_blank">Building a realtime Chat application with Crystal and Kemal</a>.
+
+
   a(href="./").go_back.quando.red <{ index }>
 
