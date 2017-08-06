@@ -332,6 +332,28 @@ block default
 
         As you can also see, after the refactor the extra variable `guessed_number` is made redundant. We can now just use `guess` instead in the whole program.
 
+        Another nifty thing we could do to get rid of the indendation after `if guess = gets` is to handle the negative case at the beginning of the loop. 
+
+        That's a good opportunity to show you a new syntax bit! Namely the use of the `if`, or `unless` statement as a suffix.
+
+        ```ruby
+        # src/guessing_game.cr
+        # ...
+        print "Please input your guess: "
+
+        next unless guess = gets
+
+        # The above is the same as:
+        # unless guess = gets
+        #   next
+        # end
+
+        unless guess = guess.to_i?
+        #...
+        ```
+
+        The compiler will recognize that we handled the negative case first and that there are no runtime errors left to handle.
+
         This is the final version of the code:  
         ```ruby
         # src/guessing_game.cr
@@ -342,22 +364,22 @@ block default
 
         loop do
           print "Please input your guess: "
-          if guess = gets
-            unless guess = guess.to_i?
-              puts "#{guess} is not a number!"
-              next
-            end
+          next unless guess = gets
 
-            puts "You guessed: #{guess}"
+          unless guess = guess.to_i?
+            puts "#{guess} is not a number!"
+            next
+          end
 
-            if guess < secret_number
-              puts "Too small!"
-            elsif guess > secret_number
-              puts "Too big!"
-            else
-              puts "You win!"
-              break
-            end
+          puts "You guessed: #{guess}"
+
+          if guess < secret_number
+            puts "Too small!"
+          elsif guess > secret_number
+            puts "Too big!"
+          else
+            puts "You win!"
+            break
           end
         end
         ```

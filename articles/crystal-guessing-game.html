@@ -295,6 +295,23 @@ You win!
 </code></pre>
 <p>Now, if the user enters something else rather than a number, the <code>to_i?</code> method will return a <code>Nil</code>, which will trigger the <code>unless</code> statement and skip to the <code>next</code> iteration in the loop.</p>
 <p>As you can also see, after the refactor the extra variable <code>guessed_number</code> is made redundant. We can now just use <code>guess</code> instead in the whole program.</p>
+<p>Another nifty thing we could do to get rid of the indendation after <code>if guess = gets</code> is to handle the negative case at the beginning of the loop.</p>
+<p>That’s a good opportunity to show you a new syntax bit! Namely the use of the <code>if</code>, or <code>unless</code> statement as a suffix.</p>
+<pre><code class="highlight-ruby"># src/guessing_game.cr
+# ...
+print &quot;Please input your guess: &quot;
+
+next unless guess = gets
+
+# The above is the same as:
+# unless guess = gets
+#   next
+# end
+
+unless guess = guess.to_i?
+#...
+</code></pre>
+<p>The compiler will recognize that we handled the negative case first and that there are no runtime errors left to handle.</p>
 <p>This is the final version of the code:</p>
 <pre><code class="highlight-ruby"># src/guessing_game.cr
 puts &quot;Guess a number!&quot;
@@ -304,22 +321,22 @@ secret_number = rand(100)
 
 loop do
   print &quot;Please input your guess: &quot;
-  if guess = gets
-    unless guess = guess.to_i?
-      puts &quot;#{guess} is not a number!&quot;
-      next
-    end
+  next unless guess = gets
 
-    puts &quot;You guessed: #{guess}&quot;
+  unless guess = guess.to_i?
+    puts &quot;#{guess} is not a number!&quot;
+    next
+  end
 
-    if guess &lt; secret_number
-      puts &quot;Too small!&quot;
-    elsif guess &gt; secret_number
-      puts &quot;Too big!&quot;
-    else
-      puts &quot;You win!&quot;
-      break
-    end
+  puts &quot;You guessed: #{guess}&quot;
+
+  if guess &lt; secret_number
+    puts &quot;Too small!&quot;
+  elsif guess &gt; secret_number
+    puts &quot;Too big!&quot;
+  else
+    puts &quot;You win!&quot;
+    break
   end
 end
 </code></pre>
