@@ -189,19 +189,6 @@ article
   p
     font-size: 1.2em
 
-@media screen and (max-width: 860px)
-  article
-    width: 666px
-    
-
-@media screen and (max-width: 670px)
-  article
-    width: 480px
-
-@media screen and (max-width: 479px)
-  article
-    width: 100vw
-
 
 a.go_back
   display: flex
@@ -249,6 +236,11 @@ code
   padding: 2px 2px
   font-size: 13px
 
+  overflow: visible;
+
+  pre
+    overflow: visible;
+
 /****************************************/
 /*************** SHOWCASE ***************/
 /****************************************/
@@ -259,3 +251,49 @@ code
 
 .markdown.showcase
   font-size: 20px
+
+
+@media screen and (max-width: 860px)
+  article
+    width: 90vw
+    .markdown
+      width: 95vw
+
+    p
+      font-size: 1em
+    a
+      font-size: 1.1em
+    label
+      font-size: 1.2em
+  code
+    font-size: 0.9em
+
+@media screen and (max-width: 670px)
+  article
+    width: 90vw
+    .markdown
+      width: 95vw
+
+    p
+      font-size: 0.9em
+    a
+      font-size: 1em
+    label
+      font-size: 1.1em
+  code
+    font-size: 0.8em
+
+@media screen and (max-width: 479px)
+  article
+    width: 80vw
+    .markdown
+      width: 95vw
+
+    p
+      font-size: 0.8em
+    a
+      font-size: 0.9em
+    label
+      font-size: 1em
+  code
+    font-size: 0.7em

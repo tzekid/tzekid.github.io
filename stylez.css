@@ -186,21 +186,6 @@ article h3 {
 article p {
   font-size: 1.2em;
 }
-@media screen and (max-width: 860px) {
-  article {
-    width: 666px;
-  }
-}
-@media screen and (max-width: 670px) {
-  article {
-    width: 480px;
-  }
-}
-@media screen and (max-width: 479px) {
-  article {
-    width: 100vw;
-  }
-}
 a.go_back {
   display: flex;
   margin-left: auto;
@@ -245,6 +230,10 @@ code {
   background: #eee;
   padding: 2px 2px;
   font-size: 13px;
+  overflow: visible;
+}
+code pre {
+  overflow: visible;
 }
 /****************************************/
 /*************** SHOWCASE ***************/
@@ -255,4 +244,64 @@ code {
 }
 .markdown.showcase {
   font-size: 20px;
+}
+@media screen and (max-width: 860px) {
+  article {
+    width: 90vw;
+  }
+  article .markdown {
+    width: 95vw;
+  }
+  article p {
+    font-size: 1em;
+  }
+  article a {
+    font-size: 1.1em;
+  }
+  article label {
+    font-size: 1.2em;
+  }
+  code {
+    font-size: 0.9em;
+  }
+}
+@media screen and (max-width: 670px) {
+  article {
+    width: 90vw;
+  }
+  article .markdown {
+    width: 95vw;
+  }
+  article p {
+    font-size: 0.9em;
+  }
+  article a {
+    font-size: 1em;
+  }
+  article label {
+    font-size: 1.1em;
+  }
+  code {
+    font-size: 0.8em;
+  }
+}
+@media screen and (max-width: 479px) {
+  article {
+    width: 80vw;
+  }
+  article .markdown {
+    width: 95vw;
+  }
+  article p {
+    font-size: 0.8em;
+  }
+  article a {
+    font-size: 0.9em;
+  }
+  article label {
+    font-size: 1em;
+  }
+  code {
+    font-size: 0.7em;
+  }
 }
