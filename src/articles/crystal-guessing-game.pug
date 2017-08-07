@@ -71,9 +71,9 @@ block default
         ## Generating a secret number  
         Next, we need to generate a secret number that the user will try to guess. The secret number should be different every time so the game is fun to play more than once. Let's use a random number between 1 and 100 so the game isn't too difficult.
         
-        Generating a simple random number in Crystal is fairly easy with the help of the `rand` function. It takes an Int as the max range, so giving it 100 will generate numbers between 0 and 99. What what?
+        Generating a simple random number in Crystal is fairly easy with the help of the `rand` function. It takes an Int as the max range, so giving it 100 will generate numbers between 0 and 99. Whait what?
         
-        Yeah, apparently the `rand` function only generates numbers from 0 up until but not including the max value we give it. To get the range we want, we'll have to write `rand(100) + 1', which will generate numbers between 1 and 100 - the range we're actually looking for!
+        Yeah, apparently the `rand` function only generates numbers from 0 up until but not including the max value we give it. To get the range we want, we'll have to write `rand(100) + 1`, which will generate numbers between 1 and 100 - the range we're actually looking for!
 
         Let's start using the built in `rand` function
 

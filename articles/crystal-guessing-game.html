@@ -85,8 +85,8 @@ You guessed: 420
 <p>At this point, the first part of the game is done: we’re getting input from the keyboard and then printing it.</p>
 <h2>Generating a secret number</h2>
 <p>Next, we need to generate a secret number that the user will try to guess. The secret number should be different every time so the game is fun to play more than once. Let’s use a random number between 1 and 100 so the game isn’t too difficult.</p>
-<p>Generating a simple random number in Crystal is fairly easy with the help of the <code>rand</code> function. It takes an Int as the max range, so giving it 100 will generate numbers between 0 and 99. What what?</p>
-<p>Yeah, apparently the <code>rand</code> function only generates numbers from 0 up until but not including the max value we give it. To get the range we want, we’ll have to write `rand(100) + 1’, which will generate numbers between 1 and 100 - the range we’re actually looking for!</p>
+<p>Generating a simple random number in Crystal is fairly easy with the help of the <code>rand</code> function. It takes an Int as the max range, so giving it 100 will generate numbers between 0 and 99. Whait what?</p>
+<p>Yeah, apparently the <code>rand</code> function only generates numbers from 0 up until but not including the max value we give it. To get the range we want, we’ll have to write <code>rand(100) + 1</code>, which will generate numbers between 1 and 100 - the range we’re actually looking for!</p>
 <p>Let’s start using the built in <code>rand</code> function</p>
 <pre><code class="highlight-ruby"># src/guessing_game.cr
 puts &quot;Guess a number!&quot;
