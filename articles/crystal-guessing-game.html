@@ -85,11 +85,13 @@ You guessed: 420
 <p>At this point, the first part of the game is done: we’re getting input from the keyboard and then printing it.</p>
 <h2>Generating a secret number</h2>
 <p>Next, we need to generate a secret number that the user will try to guess. The secret number should be different every time so the game is fun to play more than once. Let’s use a random number between 1 and 100 so the game isn’t too difficult.</p>
-<p>Let’s start using the built in <code>rand</code> function.</p>
+<p>Generating a simple random number in Crystal is fairly easy with the help of the <code>rand</code> function. It takes an Int as the max range, so giving it 100 will generate numbers between 0 and 99. What what?</p>
+<p>Yeah, apparently the <code>rand</code> function only generates numbers from 0 up until but not including the max value we give it. To get the range we want, we’ll have to write `rand(100) + 1’, which will generate numbers between 1 and 100 - the range we’re actually looking for!</p>
+<p>Let’s start using the built in <code>rand</code> function</p>
 <pre><code class="highlight-ruby"># src/guessing_game.cr
 puts &quot;Guess a number!&quot;
 
-secret_number = rand(100)
+secret_number = rand(100) + 1
 puts &quot;The secret number is: #{secret_number}&quot;
 
 print &quot;Please input your guess: &quot;
@@ -97,7 +99,6 @@ guess = gets
 
 puts &quot;You guessed: #{guess}&quot;
 </code></pre>
-<p>Generating a simple random number in Crystal is fairly easy with the help of the <code>rand</code> function. It takes an Int as the max range, so giving it 100 will generate numbers between 1 and 100.</p>
 <p><input id="rand_api" type="checkbox" /><label for="rand_api"> (optional) You can have a glance at the <a href="https://crystal-lang.org/api/master/Random.html" target="_blank">Random</a> module on the <a href="https://crystal-lang.org/api/master/" target="_blank">API docs</a>.</label></p>
 <p>It is always good to check the docs when you don’t understand something, or when a StackOverflow answers get you only so far. At this point in time the documentation is extensive, but far from complete, and because the Crystal lang is written in itself, you can easily dive into the source code at any time to get a better understanding of the undelying concepts.</p>
 <p>The second line that we added to the code prints the secret number. This is useful while we’re developing the program to be able to test it, but we’ll delete it from the final version. It’s not much of a game if the program prints the answer as soon as it starts!</p>
@@ -119,7 +120,7 @@ You guessed: 92
 <pre><code class="highlight-ruby"># src/guessing_game.cr
 puts &quot;Guess a number!&quot;
 
-secret_number = rand(100)
+secret_number = rand(100) + 1
 puts &quot;The secret number is: #{secret_number}&quot;
 
 print &quot;Please input your guess: &quot;
@@ -201,7 +202,7 @@ elsif guessed_number &gt; secret_number
 <pre><code class="highlight-ruby"># src/guessing_game.cr
 puts &quot;Guess a number!&quot;
 
-secret_number = rand(100)
+secret_number = rand(100) + 1
 puts &quot;The secret number is: #{secret_number}&quot;
 
 loop do
@@ -277,9 +278,42 @@ Please input your guess: 40
 You guessed: 40
 You win!
 </code></pre>
+<p>This is the code so far:</p>
+<pre><code class="highlight-ruby"># src/guessing_game.cr
+puts &quot;Guess a number!&quot;
+
+secret_number = rand(100) + 1
+# puts &quot;The secret number is: #{secret_number}&quot;
+
+loop do
+  print &quot;Please input your guess: &quot;
+  
+  if guess = gets
+    begin
+      guessed_number = guess.to_i
+    rescue
+      puts &quot;#{guess} is not a number!&quot;
+      next
+    end
+
+    puts &quot;You guessed: #{guess}&quot;
+
+    if guessed_number &lt; secret_number
+      puts &quot;Too small!&quot;
+    elsif guessed_number &gt; secret_number
+      puts &quot;Too big!&quot;
+    else
+      puts &quot;You win!&quot;
+      break
+    end
+  end
+end
+</code></pre>
 <h3>Refactoring</h3>
-<p>Even though it works, the syntax looks a bit off - using <code>begin..rescue</code> is not the most optimal way to do it.</p>
-<p>Until now <code>to_i</code> crashed upon failure, that’s why we made good use of the <code>begin..rescue</code> statement. There is, however, an alternative to <code>to_i</code>, namely <code>to_i?</code>. The <code>?</code> mark, which looks a lot like the <a href="https://en.wikipedia.org/wiki/Elvis_operator">Elvis operator</a>, gives out a <code>Nil</code> on failure instead of crashing. How awfuly nice!</p>
+<p>Even though everything works, the syntax looks a bit off and we could improve in some parts - eg. using <code>begin..rescue</code> is not the most optimal way to do it.</p>
+<p>Until now <code>to_i</code> crashed upon failure, that’s why we made good use of the <code>begin..rescue</code> statement. Thankfully there are other ways to do it.</p>
+<p><input id="string" type="checkbox" /><label for="string"> You can have a look at the <a href="https://crystal-lang.org/api/master/String.html" target="_blank">String</a> section of the Crystal API where</label></p>
+<p>you can see the <a href="https://crystal-lang.org/api/master/String.html#to_i%3F%28base%3AInt%3D10%2Cwhitespace%3Dtrue%2Cunderscore%3Dfalse%2Cprefix%3Dfalse%2Cstrict%3Dtrue%29-instance-method"><code>to_i?</code></a> method. It acts exactly like we expect - execept it doesn’t crash! It simply returns a <code>Nil</code> on failure.</p>
 <p>That means that we could catch the error with a simple <code>if</code> statement. We could be even more fancy, and use the <a href="https://crystal-lang.org/docs/syntax_and_semantics/unless.html"><code>unless</code></a> statement, which is a negated if. Using it instead of <code>if !</code> makes the code easier to read. The refactored bit looks like this:</p>
 <pre><code class="highlight-ruby"># src/guessing_game.cr
 # ...
@@ -312,17 +346,21 @@ unless guess = guess.to_i?
 #...
 </code></pre>
 <p>That way, the compiler will recognize that we handled the negative case first and that there are no runtime errors left to handle and let get rid of the extra indentation.</p>
+<p><a href="https://github.com/rx14">RX14</a> pointed out another interesting nitpick. To <a href="https://www.reddit.com/r/crystal_programming/comments/6qcxa3/writing_a_guessing_game_in_crystal_lang/dl91dfy/">quote him</a>:</p>
+<blockquote>
+<p><code>gets</code> will only return <code>nil</code> if the input IO was closed, which necessarily means that all future calls will return <code>nil</code> too. Using <code>next</code> instead of <code>break</code> in the <code>gets</code> guard statement will cause you  to enter an infinite loop if you use Ctrl-D (which closes the input file descriptor in the terminal).</p>
+</blockquote>
+<p>By replacing the <code>next</code> before <code>gets</code> with a <code>break</code>, we will get the behaviour we expect when the user uses Ctrl-D.</p>
 <p>This is the final version of the code:</p>
 <pre><code class="highlight-ruby"># src/guessing_game.cr
 puts &quot;Guess a number!&quot;
-
-secret_number = rand(100)
+secret_number = rand(100) + 1
 # puts &quot;The secret number is: #{secret_number}&quot;
 
 loop do
   print &quot;Please input your guess: &quot;
   
-  next unless guess = gets
+  break unless guess = gets
 
   unless guess = guess.to_i?
     puts &quot;#{guess} is not a number!&quot;
@@ -343,8 +381,11 @@ end
 </code></pre>
 <h2>Summary</h2>
 <p>At this point you’ve successfully built the guessing game! Congratulations!</p>
-<p>Many thanks to <a href="https://github.com/rx14">RX14</a> for providing all the helpful feedback :)</p>
-<p>From this point I’d recommend you have a go at the <a href="https://crystal-lang.org/docs/" target="_blank">official Crystal Book</a> if you haven’t already, and <a href="https://github.com/askn/crystal-by-example" target="_blank">Crystal by Example</a> is another resource that is always handy for a beginner. For a great introduction into Crystal app development try <a href="http://serdardogruyol.com/building-a-realtime-chat-app-with-crystal-and-kemal" target="_blank">Building a realtime Chat application with Crystal and Kemal</a>.</p>
+<p>By doing that you’ve learned about the basics of variable assignment, control expressions, exception handling and the idiomatic way of doing things in Crystal.</p>
+<p><strong>From this point</strong> I’d recommend you have a go at the <a href="https://crystal-lang.org/docs/" target="_blank">official Crystal Book</a> if you haven’t already, and <a href="https://github.com/askn/crystal-by-example" target="_blank">Crystal by Example</a> is another resource that is always handy for a beginner. For a great introduction into Crystal app development try <a href="http://serdardogruyol.com/building-a-realtime-chat-app-with-crystal-and-kemal" target="_blank">Building a realtime Chat application with Crystal and Kemal</a>.</p>
+<hr>
+<p>Many thanks to <a href="https://github.com/rx14">RX14</a> for providing all the helpful feedback :) You can check his github to find loads of interesting projects, many of which written in Crystal!</p>
+<p>Other great resources to learn: the <a href="https://gitter.im/crystal-lang/crystal">gitter</a> channel is where a lot of nice and helpful people hang around - come by and say hi! If you have broader questions check out the <a href="https://stackoverflow.com/questions/tagged/crystal-lang">stack-overflow</a> subsection for crystal-lang. There’s also the <a href="https://github.com/veelenga/awesome-crystal">awesome-crystal</a> list of projects where you can find most things crystal. And, of course, there’s the <a href="http://www.crystalweekly.com/">Crystal Weekly</a> which provides you with the latest news.</p>
 
     </div>
   </article><a class="go_back quando red" href="./"><{ index }></a>

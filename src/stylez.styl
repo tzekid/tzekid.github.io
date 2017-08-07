@@ -51,7 +51,7 @@ body
 
 h1.logo
   padding: 0px
-  font-size: 60px  
+  font-size: 60px
 
 .container
   width: 920px
@@ -79,18 +79,27 @@ h1.logo
 		
 @media screen and (max-width: 920px)
   .container
-    width: 80vw
+    width: 90vw
     p
-      font-size: 20px
+      font-size: 22px
+      margin-top: 12px
     .big
-      font-size: 28px
+      font-size: 30px
     .small
       font-size: 20px
+      display: none
+    
+    h1.logo
+      font-size: 40px
+      align-content: center
+      left: auto
+      right: auto
+      margin-left: auto
+      margin-right: auto
+      text-align: center
 
 
-@media screen and (max-width: 500px)
-  h1.logo
-    font-size: 40px
+// @media screen and (max-width: 500px)
 
 
 
@@ -169,7 +178,6 @@ a.art_title
       display: none
 
 
-
 /****************************************/
 /********** INDIVIDIAL ARTICLES *********/
 /****************************************/
@@ -189,6 +197,12 @@ article
   p
     font-size: 1.2em
 
+  hr
+    width: 90%
+    align-content: center
+    left: auto
+    right: auto
+
 
 a.go_back
   display: flex
@@ -205,8 +219,6 @@ a.go_back
   font-size: 1.2em
   text-decoration: none
 
-  blockquote
-    font-size: 1
 
 /************ Checkboxes ****************/
 /*  adapted from @barnettjw 's codepen  */
