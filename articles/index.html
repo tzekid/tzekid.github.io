@@ -1,32 +1,61 @@
-<!DOCTYPE html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>tzekid | articles</title><style>@font-face {
-  font-family: 'Josefin Sans';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Josefin Sans'), local('JosefinSans'), url(https://fonts.gstatic.com/s/josefinsans/v9/xgzbb53t8j-Mo-vYa23n5j0LW-43aMEzIO6XUTLjad8.woff2) format('woff2');
-  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
-}
-@font-face {
-  font-family: 'Josefin Sans';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Josefin Sans'), local('JosefinSans'), url(https://fonts.gstatic.com/s/josefinsans/v9/xgzbb53t8j-Mo-vYa23n5ugdm0LZdjqr5-oayXSOefg.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
-}
-@font-face {
-  font-family: 'Quando';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Quando-Regular'), url(https://fonts.gstatic.com/s/quando/v5/Oeohr3r1MT36PpT5mWulufesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
-  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
-}
-@font-face {
-  font-family: 'Quando';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Quando-Regular'), url(https://fonts.gstatic.com/s/quando/v5/PH1InQe0rvp_yN3TzIuyyQ.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
-}
-</style><link rel="stylesheet" href="../normalize.min.css"><link rel="stylesheet" href="../stylez.css"><link rel="stylesheet" href="../highlight-default.min.css"></head><body><header></header><div class="art_head"><a class="art_title" href="/"><h1 class="logo quando red art_logo"><{ tzekid }></h1></a></div><div class="articles josefin"><div class="article"><span>July 2017</span> <a href="./crystal-guessing-game.html">Writing a guessing game in Crystal lang</a></div></div><script type="text/x-mathjax-config">MathJax.Hub.Config({
-  tex2jax: { inlineMath: [['$', '$'], ['\\(', '\\)']] }
-});</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML-full"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();
-</script><footer></footer></body>
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>tzekid | articles</title>
+  <style>
+    @font-face {
+      font-family: 'Josefin Sans';
+      font-style: normal;
+      font-weight: 400;
+      src: local('Josefin Sans'), local('JosefinSans'), url(https://fonts.gstatic.com/s/josefinsans/v9/xgzbb53t8j-Mo-vYa23n5j0LW-43aMEzIO6XUTLjad8.woff2) format('woff2');
+      unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face {
+      font-family: 'Josefin Sans';
+      font-style: normal;
+      font-weight: 400;
+      src: local('Josefin Sans'), local('JosefinSans'), url(https://fonts.gstatic.com/s/josefinsans/v9/xgzbb53t8j-Mo-vYa23n5ugdm0LZdjqr5-oayXSOefg.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+    }
+    @font-face {
+      font-family: 'Quando';
+      font-style: normal;
+      font-weight: 400;
+      src: local('Quando-Regular'), url(https://fonts.gstatic.com/s/quando/v5/Oeohr3r1MT36PpT5mWulufesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
+      unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face {
+      font-family: 'Quando';
+      font-style: normal;
+      font-weight: 400;
+      src: local('Quando-Regular'), url(https://fonts.gstatic.com/s/quando/v5/PH1InQe0rvp_yN3TzIuyyQ.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+    }
+    
+  </style>
+  <link rel="stylesheet" href="../normalize.min.css">
+  <link rel="stylesheet" href="../stylez.css">
+  <link rel="stylesheet" href="../highlight-default.min.css">
+</head>
+<body>
+  <header></header>
+  <div class="art_head"><a class="art_title" href="/">
+      <h1 class="logo quando red art_logo"><{ tzekid }></h1></a></div>
+  <div class="articles josefin">
+    <div class="article"><span>August 2017</span> <a href="./on-phishing.html">Phishing for dummies, Part 1 (DRAFT)</a></div>
+    <div class="article"><span>July 2017</span> <a href="./crystal-guessing-game.html">Writing a guessing game in Crystal lang</a></div>
+  </div>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: { inlineMath: [['$', '$'], ['\\(', '\\)']] }
+    });
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML-full"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+    
+  </script>
+  <footer></footer>
+</body>
