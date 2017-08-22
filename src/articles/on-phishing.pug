@@ -54,13 +54,18 @@ block default
         </style>
         ```
 
-        There is all we need. Let's go through the code. The `doctype` tag is mostly there to show all browsers that the 'document' we're giving them is actually just plain html. You can read more about the `doctype` and `meta` tags [here](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/Introduction_to_HTML5).
+        There is all we need. Let's go through the code. The `doctype` tag is mostly there to show all browsers that the 'document' we're giving them is actually just plain html. 
+
+        <input id="meta_" type="checkbox" /><label for="meta_"> You can read more about the `doctype` and `meta` tags <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/Introduction_to_HTML5" target="_blank">here</a>.</label>
+
 
         Now, the meat of the site is in the next `form` tag. This tag is made up of many smaller inputs which, when submitted, are usually compiled down to JSON - a protocol which makes the sharing of (objects and) variables universal.
         
         <input id="elif" type="checkbox" /><label for="elif"> There is a <a href="https://www.reddit.com/r/explainlikeimfive/comments/2m2pb2/eli5what_is_json/cm0e4c2/" target="_blank">very neat ELIF</a> on the topic, if you want to know more.</label>
 
-        We give the `form` tag an `action` argumen. This is _where_ the information will be submitted, ie. in our case that we submit the form information to a local file named `script.php`. The next argument, `method`, describes _how_ the information will be transfered. You can read more about it on the [MDN web docs](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Sending_and_retrieving_form_data). 
+        We give the `form` tag an `action` argument. This is _where_ the information will be submitted, ie. in our case that we submit the form information to a local file named `script.php`. The next argument, `method`, describes _how_ the information will be transfered.  
+
+        <input id="mdn_0" type="checkbox" /><label for="mdn_0"> (optional) You can read more about it on the <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Sending_and_retrieving_form_data" target="_blank">MDN web docs</a>.</label>
 
         You can see the `name` attribute in the `input`, alongsite the `type` tag. The `type` tag tells the browser how to present the input field. In our example we need one field for the `user`name, which consists of text, and one for the `p`ass`w`or`d`, which should be hidden by asterisks.
 
