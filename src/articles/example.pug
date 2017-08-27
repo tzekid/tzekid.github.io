@@ -9,7 +9,7 @@ block default
     
   article.josefin
     .markdown
-      :markdown-it(html typographer linkify langPrefix='highlight-')
+      :markdown-it(html typographer Hlinkify KramdownAttrs langPrefix='highlight-')
         # Header
 
         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. $$\int_{0}^{\pi}\frac{x^{4}\left(1-x\right)^{4}}{1+x^{2}}dx =\frac{22}{7}-\pi$$ It has survived not only five centuries, but also the leap  into electronic typesetting, remaining essentially unchanged. 
@@ -27,8 +27,4 @@ block default
         <input id="example" type="checkbox" /><label for="example"> An <a href="#" target="_blank">example</a> checkbox-thingie.</label>
 
 
-      :markdown-it(linkify langPrefix='highlight-')
-        And this is my template.
-      
-  
   a(href="./index.html").go_back.quando.red <{ index }>

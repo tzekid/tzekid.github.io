@@ -1,0 +1,118 @@
+extends ../layout/default.pug
+
+block title
+  title tzekid | Introduction to Web Development
+
+block default
+  .art_head
+    a(href="/").art_title #[h1.logo.quando.red.art_logo <{ tzekid }>]
+    
+  article.josefin
+    .markdown
+      :markdown-it(html typographer Hlinkify KramdownAttrs langPrefix='highlight-')
+        # Introduction to Web Development 
+
+        I originally wrote [On phishing](/articles/on-phishing.html) as a resource for the IT group I founded at my school. A problem which became obvious very early is that I didn't know my audience, ie. didn't even think about what they did or what they _did not_ knew, even though I advertised the group as being 'beginner friendly' and throwing the 'zero foreknowledge of coding required' phrase around.
+
+        In this short companion article I'll show you how to setup an environment in Windows™ where you can code, the tools which you'll need for the _On phishing_ module / series, and a crash course in the basics of HTML, coding in general, and PHP.
+
+        ## Code Environment
+
+        First of all you need to have your environment set up. For that you have to decide where you will save all your files, be it on the ```Desktop``` or in any other place, eg., the ```Documents``` folder.
+
+        ### Text editor
+        
+        ![vscode_screenshot](/resources/basics_vscode.png)
+
+        Once you've decided where to put your files you need a text editor. [There](https://atom.io/) [are](http://www.jedit.org/) [lots](https://github.com/textmate/textmate#readme) [of](http://brackets.io/) [them](https://neovim.io/) ['editors](https://micro-editor.github.io/) [around](https://www.sublimetext.com/); it's all a matter of [taste](https://github.com/jhallen/joes-sandbox/tree/master/editor-perf). Personally I always recommend [Visual Studio Code](https://code.visualstudio.com/). It's cross-platform (on Windows, macOS, your toaster, etc.), it's snappy, customizable and easy to use.
+
+        <input id="vsc" type="checkbox" /><label for="vsc"><a href="https://code.visualstudio.com/" target="_blank">Download</a> and install Visual Studio Code</label>
+
+        If you're unfamiliar with (programming) text editors, then
+        
+        <input id="tips_n_tricks" type="checkbox" /><label for="tips_n_tricks"> you can have a look at the official <a href="https://github.com/Microsoft/vscode-tips-and-tricks" target="_blank">tips and tricks</a> guide from microsoft</label>
+
+        ### Terminal | CMD
+
+        We will be using the _terminal_ a lot. I haven't found any compact guide to windows cmd, so I'll give you a quick crash course. Hit ```WIN + R``` and type ```cmd``` inside the prompt that just popped up, then hit enter. You now have the cmd terminal window! you have seen it many times and you will have to deal with it for many more times to come.
+
+        The main commands which you will use are ```dir```, ```cd```, ```mkdir```, ```rename``` and ```remove```.<br/>
+        ( you mustn't copy the ```>``` symbol! it is just there to differentiate cmd commands from code)
+
+        | Command | Description | Example |
+        |------------------|--------------|:----------|
+        | ```dir``` | Displays the current ```dir```ectory | ```> dir``` |
+        | ```cd``` | It ```c```hanges the current ```d```irectory | ```> cd directory_name``` |
+        | ```mkdir``` | Creates / ```m```a```k```es a new ```dir```ectory | ```> mkdir a_new_directory_name``` |
+        | ```rename``` | Rename a file / folder | ```> rename old_name new_name``` |   
+        | ```remove``` | Remove a file / folder | ```> remove some_name``` |
+
+        In programming, going up a directory | the previous directory is symbolized by two dots ```..``` <br/>
+        Eg. going to the 'Documents' directory and back would look like this:
+
+        ```
+        C:\Users\tzekid> cd Documents
+        C:\Users\tzekid\Documents> cd ..
+        C:\Users\tzekid>
+        ```
+
+        Protip: You don't always have to write the full names of directories / files. Write the beginning letter(s) and hit TAB to autocomplete the name, if the file / dir is in your current directory. <br/> Eg.: ```> cd Doc``` (hit TAB) ```> cd Documents```. 
+
+        ### XAMPP ( Local Server )
+
+        In the first module (_On Phishing_) we will be working with HTML and PHP. While you can simply drag-and-drop HTML files into your browsers, you cannot do the same for PHP files - to run them you need a local server which can parse PHP. There is a neat piece of software named 'XAMPP' which can be very useful.
+
+        <input id="xampp" type="checkbox" /><label for="xampp"><a href="https://www.apachefriends.org/index.html" target="_blank">Download</a> and install XAMPP</label>
+
+        XAMPP packages a couple of useful tools to host a fully functional server. I will show you an example environment for building websites (and running php scripts!):
+
+        In `explorer` go to your desired folder, eg. 'Documents', create a new folder named 'Projects', enter it and there create a file called 'index.html'. To start the local server you have to fire up the cmd terminal, navigate to your root folder and start the php instance. Here's how you can do it
+
+        ```
+        > cd Documents
+        > dir   :: You can make sure your 'projects' folder is in there
+        > cd Projects
+        > c:\xampp\php\php.exe -S localhost:8080
+        ``` 
+
+        The last command starts a local web server on the port 8080. You can now just fire up your browser of choice (not IE) and enter `localhost:8080` in the address bar to navigate to your local page!
+
+        In this example 'Projects' is your working directory, where you put all your stuff in.
+        
+        Most web servers recognise `index.html` (or in our php server, `index.php` too) as the root of the page, ie. the page that will be automatically shown. If you don't have an index, the server will simply list all the files you have in the directory. 
+        
+        Voilà! Now you are set and ready to get started!
+
+        ## HTML. The basics
+
+        To get a compact overview of the HTML5 technologies (HTML | CSS | JS) I recommend watching Derek Banas crash course   
+
+        <iframe width="100%" height="400" src="https://www.youtube-nocookie.com/embed/kDyJN7qQETA?rel=0" frameborder="0" allowfullscreen></iframe>
+
+        The video might come off as overwhelming, that's why after watching that I recommend diving in 
+
+        <input id="html_tut" type="checkbox" /><label for="html_tut">the <a href="http://learn.shayhowe.com/html-css/" target="_blank">Learn to code</a> HTML series</label>
+
+        is the next best place to start. 'Learn to code' is a way more relaxed, indepth series of articles on HTML5. The same guy also did an advanced HTML5 series which, for now irrelevant, might be a good read in the future.
+
+        ## PHP. The basics
+
+        <iframe width="100%" height="400" src="https://www.youtube-nocookie.com/embed/7TF00hJI78Y?rel=0" frameborder="0" allowfullscreen></iframe>
+
+        To get comfortable with PHP, I recommend
+
+        <input id="php_tut" type="checkbox" /><label for="php_tut">the <a href="#" target="_blank">learn-php</a> tutorial series.</label>
+
+        There you have an interactive environment in your browser! and the exercises are pretty straight forward. The site tends to have an annoying popup in the lower-left corner - if you look closely, there's an `x` button you can hit.
+
+        ## Conclusion
+
+        Congratulations! Now you should have an environment in which you can write sites and at least a basic understanding of the HTML5 technologies and PHP.
+
+        Further resources:
+
+        - The [MDN Web Docs](https://developer.mozilla.org/) are a great resource for Web-related stuff. When you search for something web-related, just add mdn as a suffix 
+        - [Stackoverflow](https://stackoverflow.com/documentation/html/topics) is _the_ most popular resource used by programmers of all sorts. It is a great place to find answers to problems you have, all you have to do is search :)
+
+  
+  a(href="./index.html").go_back.quando.red <{ index }>

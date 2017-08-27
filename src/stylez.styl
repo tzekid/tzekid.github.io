@@ -30,10 +30,12 @@ header
 header::after
   background: linear-gradient(to right, #FDFFFC, #C1292E 33%, #235789 66%, #161925 100%)
   top: 0
+  z-index: 99
 
 footer::after
   background: linear-gradient(to left, #FDFFFC, #C1292E 33%, #235789 66%, #161925 100%)
   bottom: 0
+  z-index: 99
 
 html
 body
@@ -112,7 +114,7 @@ a.art_title
   text-decoration: none
 
 table
-  width: 70%
+  width: 80%
   margin-left: 15%
   justify-content: center
   align-content: center
@@ -150,12 +152,12 @@ tr
   .container
     width: 90vw
     p
-      font-size: 22px
+      font-size: 26px
       margin-top: 12px
     .big
-      font-size: 30px
+      font-size: 34px
     .small
-      font-size: 20px
+      font-size: 24px
       display: none
     
     h1.logo
@@ -237,7 +239,7 @@ a.go_back
   margin-top: 1.5em
   margin-bottom: 2em
 
-  font-size: 1.2em
+  font-size: 1.4em
   text-decoration: none
 
 blockquote
@@ -276,10 +278,17 @@ code
   padding: 2px 2px
   font-size: 13px
 
-  overflow: visible;
+  overflow: visible
 
-  pre
-    overflow: visible;
+  &:before
+    content: ''
+
+pre
+  z-index: 999
+  background: #eee
+
+  code
+    background: #222
 
 /****************************************/
 /*************** SHOWCASE ***************/
@@ -299,14 +308,14 @@ code
     .markdown
       width: 95vw
 
-    p
-      font-size: 1em
-    a
-      font-size: 1.1em
-    label
-      font-size: 1.2em
-  code
-    font-size: 0.9em
+  //   p
+  //     font-size: 1.2em
+  //   a
+  //     font-size: 1.3em
+  //   label
+  //     font-size: 1.4em
+  // code
+  //   font-size: 0.9em
 
 @media screen and (max-width: 670px)
   article
@@ -314,14 +323,14 @@ code
     .markdown
       width: 95vw
 
-    p
-      font-size: 0.9em
-    a
-      font-size: 1em
-    label
-      font-size: 1.1em
-  code
-    font-size: 0.8em
+  //   p
+  //     font-size: 0.9em
+  //   a
+  //     font-size: 1em
+  //   label
+  //     font-size: 1.1em
+  // code
+  //   font-size: 0.8em
 
 @media screen and (max-width: 479px)
   article
@@ -329,11 +338,11 @@ code
     .markdown
       width: 95vw
 
-    p
-      font-size: 0.8em
-    a
-      font-size: 0.9em
-    label
-      font-size: 1em
-  code
-    font-size: 0.7em
+  //   p
+  //     font-size: 0.8em
+  //   a
+  //     font-size: 0.9em
+  //   label
+  //     font-size: 1em
+  // code
+  //   font-size: 0.7em

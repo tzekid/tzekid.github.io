@@ -25,10 +25,12 @@ header::after {
 header::after {
   background: linear-gradient(to right, #fdfffc, #c1292e 33%, #235789 66%, #161925 100%);
   top: 0;
+  z-index: 99;
 }
 footer::after {
   background: linear-gradient(to left, #fdfffc, #c1292e 33%, #235789 66%, #161925 100%);
   bottom: 0;
+  z-index: 99;
 }
 html,
 body {
@@ -102,7 +104,7 @@ a.art_title {
   text-decoration: none;
 }
 table {
-  width: 70%;
+  width: 80%;
   margin-left: 15%;
   justify-content: center;
   align-content: center;
@@ -144,14 +146,14 @@ tr:last-child {
     width: 90vw;
   }
   .container p {
-    font-size: 22px;
+    font-size: 26px;
     margin-top: 12px;
   }
   .container .big {
-    font-size: 30px;
+    font-size: 34px;
   }
   .container .small {
-    font-size: 20px;
+    font-size: 24px;
     display: none;
   }
   .container h1.logo {
@@ -237,7 +239,7 @@ a.go_back {
   bottom: 0;
   margin-top: 1.5em;
   margin-bottom: 2em;
-  font-size: 1.2em;
+  font-size: 1.4em;
   text-decoration: none;
 }
 blockquote {
@@ -277,8 +279,15 @@ code {
   font-size: 13px;
   overflow: visible;
 }
-code pre {
-  overflow: visible;
+code:before {
+  content: '';
+}
+pre {
+  z-index: 999;
+  background: #eee;
+}
+pre code {
+  background: #222;
 }
 /****************************************/
 /*************** SHOWCASE ***************/
@@ -297,18 +306,6 @@ code pre {
   article .markdown {
     width: 95vw;
   }
-  article p {
-    font-size: 1em;
-  }
-  article a {
-    font-size: 1.1em;
-  }
-  article label {
-    font-size: 1.2em;
-  }
-  code {
-    font-size: 0.9em;
-  }
 }
 @media screen and (max-width: 670px) {
   article {
@@ -317,18 +314,6 @@ code pre {
   article .markdown {
     width: 95vw;
   }
-  article p {
-    font-size: 0.9em;
-  }
-  article a {
-    font-size: 1em;
-  }
-  article label {
-    font-size: 1.1em;
-  }
-  code {
-    font-size: 0.8em;
-  }
 }
 @media screen and (max-width: 479px) {
   article {
@@ -336,17 +321,5 @@ code pre {
   }
   article .markdown {
     width: 95vw;
-  }
-  article p {
-    font-size: 0.8em;
-  }
-  article a {
-    font-size: 0.9em;
-  }
-  article label {
-    font-size: 1em;
-  }
-  code {
-    font-size: 0.7em;
   }
 }
