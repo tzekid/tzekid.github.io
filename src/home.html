@@ -1,0 +1,32 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ilie Ploscaru</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/typeit@5.10.7/dist/typeit.min.js" integrity="sha256-0CPLQz4j6DXUK8fukOncK49Rizpy8xsAMKfsVPbKHF4=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="home-box">
+        <h1><span>Mircea</span> Ilie</h1>
+        <h1>Ploscaru</h1>
+        <p>Usually <a href="https://github.com/tzekid/">codes</a> or <a href="/writings">writes</a>.</p>
+        <p>Mainly bootstraps his <span id="changer"></span></p>
+    </div>
+
+    <script>
+        var instance = new TypeIt('#changer', {
+            strings: ['future', 'life', 'career', 'body', 'mind', 'soul'],
+            speed: 120,
+            cursorSpeed: 1000,
+            breakLines: false,
+            loop: true,
+            deleteSpeed: 50,
+            nextStringDelay: [420, 6666.66],
+            loopDelay: 1250,
+        });
+    </script>
+</body>
+</html>

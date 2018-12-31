@@ -1,0 +1,17 @@
+Lessons learned
+
+(pre v2)
+  • don't forget to enclose string variables in bash!
+  • $ rename find_pattern replace_pattern *in_selection
+  • bash it's all about piping. use read and the `|` as much as you can.
+  don't be shy, and `echo`
+  • I cannot get [ ! $some_false_variable ] working for an if inside an if for
+  some mysterious reason. I've simply changed my approach. see: refine.sh
+  • to avoid unnecessarily wasting buttloads of time (refactoring, for example)
+  think through and plan a (complex) system you are going to implement before
+  writing your first line of code
+  • bash is all about streams and piping
+  • entr(1) is awesome
+  • wc exists. it counts stuff 
+
+(post v2)
