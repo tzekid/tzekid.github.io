@@ -7,15 +7,23 @@ title: "Impossible List"
 
 ## Fitness/Health Goals  
 
-_o bench 80 kg
+_x bench 55 kg (completed January 2019)
 
-_o squat 80 kg  
+_o bench 75 kg
+
+_x squat 70 kg (completed January 2019)
+
+_o squat 95 kg
+
+_x deadlift 100 kg (completed January 2019)
+
+_o deadlift 115 kg
 
 _o do 15 pull-ups in a single set  
 
 _o do a muscle up  
 
-_o run a marathon  
+_o run a half-marathon (22 km)
 
 ## Professional Goals  
 
@@ -29,7 +37,7 @@ _o develop an app I would use
 
 ## Habit Goals  
 
-_o Read 25 pages a day for three months in a row  
+_o Read an average of 25 pages a day for a month  
 
 _o Work for an average of 4.5h a day for a month  
 
