@@ -2,9 +2,6 @@
 title: "Impossible List"
 ...
 
-<!-- TOOD: fixed pweety checkboxes -->
-<!-- TODO: how does strikethrough text look like? -->
-
 ## Fitness/Health Goals  
 
 _x bench 55 kg (completed January 2019)
@@ -17,7 +14,9 @@ _o squat 95 kg
 
 _x deadlift 100 kg (completed January 2019)
 
-_o deadlift 115 kg
+_x deadlift 115 kg (completed May 2019)
+
+_o deadlift 125 kg
 
 _o do 15 pull-ups in a single set  
 

@@ -33,10 +33,11 @@
         </style>
 
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/typeit@5.10.7/dist/typeit.min.js" integrity="sha256-0CPLQz4j6DXUK8fukOncK49Rizpy8xsAMKfsVPbKHF4=" crossorigin="anonymous"></script>
 </head>
 <body>
-    
+
+<a name="top"></a>
+
 <!--
 
     __                .__   .__    .___
@@ -67,40 +68,32 @@
                     <i></i>
                 </label>
                 <div class="logo">
-                    <a href="/"><{ tzekid }></a>
+                    <!-- <a href="/"><{ tzekid }></a> -->
+                    <a href="/"><{ x }></a>
                 </div>
                 <div class="nav-wrapper">
                     <ul>
                         <li><a href="/">Home</a></li>
                         <li><a href="/about">About</a></li>
-                        <li><a href="/writings">Writings</a></li>
+                        <!-- <li><a href="/writings">Writings</a></li> -->
                         <li><a href="https://github.com/tzekid/">Projects</a></li>
                     </ul>
                 </div>
             </nav>
         </div>
-
-	<!-- Force https when connected to http -->
-	<script>
-		if (location.protocol !== "https:") location.protocol = "https:";
-	</script>
     <div class="home-box">
         <h1><span>Mircea</span> Ilie</h1>
         <h1>Ploscaru</h1>
-        <p>Usually <a href="https://github.com/tzekid/">codes</a> or <a href="/writings">writes</a>.</p>
-        <p>Mainly bootstraps his <span id="changer"></span></p>
-    </div>
+        <!-- <h2>Student</h2> -->
+        <!-- <p>Usually <a href="https://github.com/tzekid/">codes</a> or <a href="/writings">writes</a>.</p> -->
+        
+        <p>Interested in tech and psychology.</p>
 
-    <script>
-        var instance = new TypeIt('#changer', {
-            strings: ['future', 'life', 'career', 'body', 'mind', 'soul'],
-            speed: 120,
-            cursorSpeed: 1000,
-            breakLines: false,
-            loop: true,
-            deleteSpeed: 50,
-            nextStringDelay: [420, 6666.66],
-            loopDelay: 1250,
-        });
-    </script>
+        <article>
+
+		<div class='article'><span class='a-date'>1 January 2019</span><a class='a-title' href='/hello_world'>Hello World</a></div>
+            
+        </article>
+    </div>
 </html>
+

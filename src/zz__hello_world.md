@@ -3,7 +3,7 @@ title: Hello World
 date: 1 January 2019
 ...
 
-The title's very cliche - I know - but everything has got to start somewhere. In the following short article I'll rant a bit about the website.
+**TL;DR** Short rant about the website.
 
 ## The website
 
@@ -11,7 +11,7 @@ With free time on my hands these holidays I've decided that it was about time to
 
 ### Goals
 
-The main goals of this website was to put myself out there and learn to write for an audience. Interacting with an audience I've still got to figure out, but for now I'll post the articles on HN.
+The main goals of this website was to put myself out there and learn to write for an audience. 
 
 The main design choice for the website was: steal as much as possible from other people, and hope you have stolen enough so that people won't pinpoint the source at first glance.
 
@@ -40,7 +40,7 @@ The next thing I discovered was [entr](http://eradman.com/entrproject/). It's a 
 ls src/* | entr -p ./compile.sh  
 ```
 
-A goal on the todo list is to optimize so it only compiles the files that were changed, or react to edge cases when two or more files need changing.
+A goal on the todo list is only compiling the files that were changed, or react to edge cases when two or more files need changing.
 
 Lastly, something that's in the works™ is automatically including the reading time of each article after the title. While implementing that I found [`wc`](https://en.wikipedia.org/wiki/Wc_(Unix)), a tool that prints character, word, line &c. count. Small things like this make your life easier.
 

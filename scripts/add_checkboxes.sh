@@ -30,9 +30,9 @@ if grep -q '_  '* $1 || grep -q '_o '* $1 || grep -q '_x '* $1; then
 
             # fix (and/or check) special checkboxes
             if [[ "$line" == '_o '* ]]; then
-                checkbox=$checkbox" disabled "
+                checkbox=$checkbox" disabled /"
             elif [[ "$line" == '_x '* ]]; then
-                checkbox=$checkbox" checked disabled "
+                checkbox=$checkbox" checked disabled /"
             fi
 
             # automatically strikethrough the checked checkboxes

@@ -33,13 +33,13 @@
                 unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
             }
         </style>
-  <style type="text/css">
+  <style>
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
-  <style type="text/css">
+  <style>
 a.sourceLine { display: inline-block; line-height: 1.25; }
 a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
@@ -108,7 +108,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <![endif]-->
 </head>
 <body>
-    
+
+<a name="top"></a>
+
 <!--
 
     __                .__   .__    .___
@@ -139,29 +141,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
                     <i></i>
                 </label>
                 <div class="logo">
-                    <a href="/"><{ tzekid }></a>
+                    <!-- <a href="/"><{ tzekid }></a> -->
+                    <a href="/"><{ x }></a>
                 </div>
                 <div class="nav-wrapper">
                     <ul>
                         <li><a href="/">Home</a></li>
                         <li><a href="/about">About</a></li>
-                        <li><a href="/writings">Writings</a></li>
+                        <!-- <li><a href="/writings">Writings</a></li> -->
                         <li><a href="https://github.com/tzekid/">Projects</a></li>
                     </ul>
                 </div>
             </nav>
         </div>
-
-	<!-- Force https when connected to http -->
-	<script>
-		if (location.protocol !== "https:") location.protocol = "https:";
-	</script>
-<article><div 
+<article> 
 <header id="title-block-header">
 <h1 class="title">Hello World</h1>
 <p class="date">1 January 2019</p>
 </header>
-<nav id="TOC">
+<nav id="TOC" role="doc-toc">
 <ul>
 <li><a href="#the-website">The website</a><ul>
 <li><a href="#goals">Goals</a></li>
@@ -170,11 +168,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="#lessons-learned">Lessons learned</a></li>
 </ul>
 </nav>
-<p>The title’s very cliche - I know - but everything has got to start somewhere. In the following short article I’ll rant a bit about the website.</p>
+<p><strong>TL;DR</strong> Short rant about the website.</p>
 <h2 id="the-website">The website</h2>
 <p>With free time on my hands these holidays I’ve decided that it was about time to revamp my website. Learning to use an off the shelf <a href="https://www.staticgen.com/">static site generator</a> looked daunting, so I’ve decided to <a href="https://en.wikipedia.org/wiki/Reinventing_the_wheel">build my own</a>™.</p>
 <h3 id="goals">Goals</h3>
-<p>The main goals of this website was to put myself out there and learn to write for an audience. Interacting with an audience I’ve still got to figure out, but for now I’ll post the articles on HN.</p>
+<p>The main goals of this website was to put myself out there and learn to write for an audience.</p>
 <p>The main design choice for the website was: steal as much as possible from other people, and hope you have stolen enough so that people won’t pinpoint the source at first glance.</p>
 <h3 id="implementation">Implementation</h3>
 <p>After I’ve look at how other’s built their websites, I decided to follow <a href="https://en.wikipedia.org/wiki/KISS_principle">K.I.S.S.</a> and mainly use <a href="https://pandoc.org/demos.html"><code>pandoc</code></a>’s markdown to html generation as a starting point. And it was awesome.</p>
@@ -188,7 +186,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The next thing I discovered was <a href="http://eradman.com/entrproject/">entr</a>. It’s a tool that watches for file changes and performs commands you give it when one occurs.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># automagically compile when a file in `src/` changes  </span></a>
 <a class="sourceLine" id="cb2-2" title="2"><span class="fu">ls</span> src/* <span class="kw">|</span> <span class="ex">entr</span> -p ./compile.sh  </a></code></pre></div>
-<p>A goal on the todo list is to optimize so it only compiles the files that were changed, or react to edge cases when two or more files need changing.</p>
+<p>A goal on the todo list is only compiling the files that were changed, or react to edge cases when two or more files need changing.</p>
 <p>Lastly, something that’s in the works™ is automatically including the reading time of each article after the title. While implementing that I found <a href="https://en.wikipedia.org/wiki/Wc_(Unix)"><code>wc</code></a>, a tool that prints character, word, line &amp;c. count. Small things like this make your life easier.</p>
 <hr />
 <p>Thanks for reading so far and I hope you’ve found something useful here!</p>
@@ -199,7 +197,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 - anger. why it is healthy and we need to learn to channel it.
 - parallelism and functional programming. how to get started?
 - stoicism. a self report -->
-<a class='up-btn' href='#title-block-header'><{ ⇡ }></a>
+<a class='up-btn' href='#top'><{ ⇡ }></a>
 </article>
 </body>
 </html>

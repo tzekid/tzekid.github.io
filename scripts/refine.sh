@@ -30,14 +30,26 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
     if [[ "$line" == *'<title>'* ]]; then
         output="$output\n$line\n$(cat src/_style.html)"
 
+        if $is_writings; then
+            output="$output<meta http-equiv='refresh' content='0; url=/' />"
+        # elif $is_home; then
+            # read css_file
+            # output="$output$(<home_indexed.css)"
+        fi
+
     elif [[ "$line" == *'<body>'* ]]; then
         output="$output\n$line\n$(cat src/_navigation.html)"
+
+        if [[ "$1" == "--dev" ]]; then
+            output="$output<script>\
+if (location.protocol !== 'https:') location.protocol = 'https:';</script>"
+        fi
 
         if $is_home; then
             continue
         fi
     
-        output="$output\n<article><div "
+        output="$output\n<article> "
     
     
     # elif [[ "$line" == *'<p class="date">'* ]]; then
@@ -57,7 +69,7 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
             continue
         fi
 
-        output="$output\n<a class='up-btn' href='#title-block-header'><{ ⇡ }>\
+        output="$output\n<a class='up-btn' href='#top'><{ ⇡ }>\
 </a>\n</article>\n$line"
     else
         output="$output\n$line"

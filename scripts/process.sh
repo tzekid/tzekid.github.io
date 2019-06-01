@@ -10,12 +10,12 @@ new_file=""
 echo "Processing $1..."
 
 # refine index and exit
-if [[ $1 == *'home.html' ]]; then
-    cat $1 | scripts/refine.sh $1 > index.html
+if [[ $1 == *'home_indexed.html' ]]; then
+    cat $1 | scripts/refine.sh $2 > index.html
     exit 1
 
-# skip protected files
-elif [[ $1 == *'/_'* ]]; then
+# skip protected files or is home
+elif [[ $1 == *'/_'* ]] || [[ $1 == *'home.html' ]]; then
     exit 1
 
 # omit the article name prefix 
@@ -31,11 +31,11 @@ fi
 if [[ $1 == *'about.md' ]] || [[ $1 == *'writings.md' ]] \
 || [[ $1 == *'projects.md' ]]; then
 
-    scripts/add_checkboxes.sh $1 | pandoc -s -c style.css --katex |\
-scripts/refine.sh > $new_file
+    scripts/add_checkboxes.sh $1 | pandoc -t html5 -s -c style.css --katex |\
+scripts/refine.sh $2 > $new_file
 
 # or don't
 else
-    scripts/add_checkboxes.sh $1 | pandoc -s --toc -c style.css --katex |\
-scripts/refine.sh > $new_file
+    scripts/add_checkboxes.sh $1 | pandoc -t html5 -s --toc -c style.css --katex |\
+scripts/refine.sh $2 > $new_file
 fi
