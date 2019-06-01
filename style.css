@@ -740,9 +740,12 @@ code {
  a.sourceLine:empty {
      height: 1.2em;
 }
- .sourceCode {
+.sourceCode {
+    overflow: auto;
+    border-radius: 21px;
+}
+.sourceCode pre {
     overflow: hidden;
-    border-radius: 21px; /* 42 divided by 2 */
 }
  code.sourceCode {
     white-space: pre;
@@ -752,14 +755,8 @@ code {
     margin: 1em 0;
 }
  pre.sourceCode {
-    width: 740px;
     padding: 21px 21px; /* importnat part here */
     margin: 0;
-}
- @media screen {
-     div.sourceCode {
-         overflow: hidden;
-    }
 }
  @media print {
      code.sourceCode {
@@ -775,11 +772,13 @@ code {
      left: -4em;
 }
  pre.numberSource a.sourceLine::before {
+     text-decoration: none;
      content: attr(title);
      position: relative;
      left: -1em;
      text-align: right;
      vertical-align: baseline;
+     /* z-index: 1; */
      border: none;
      pointer-events: all;
      display: inline-block;
@@ -790,13 +789,13 @@ code {
      -ms-user-select: none;
      user-select: none;
      padding: 0 4px;
-     width: 4em;
-     background-color: #ffffff;
-     color: #a0a0a0;
+     width: 7em;
+     /* background-color: #ffffff; */
+     color: #ccc;
 }
  pre.numberSource {
-     margin-left: 3em;
-     border-left: 1px solid #a0a0a0;
+     /* margin-left: 3em; */
+     border-left: none;
      padding-left: 4px;
 }
  div.sourceCode {

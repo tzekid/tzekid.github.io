@@ -180,10 +180,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>With the website slowly evolving I needed some way to glue all the things together, and there came bash scripting into action. I ended up writing small scripts which did specific tasks, from glueing the navigation to each html file to recognising custom syntax and replacing these lines with a html for checkboxes that I really, really wanted to have.</p>
 <h2 id="lessons-learned">Lessons learned</h2>
 <p>I should definetly learn to use grep/sed/awk for text search and manipulation. Second lesson, which may be even more important is <a href="https://youtu.be/bkgeFi4PwOg">streams</a> in bash scripts. The time ‘compiling’ the whole site went from over 10 seconds to just about a second.</p>
+<!-- ```{.bash .numberLines startFrom="100"} -->
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># a sample line from `scripts/process.sh`  </span></a>
 <a class="sourceLine" id="cb1-2" title="2"><span class="ex">scripts/add_checkboxes.sh</span> <span class="va">$1</span> <span class="kw">|</span> <span class="ex">pandoc</span> -s --toc -c style.css --katex <span class="kw">|</span><span class="ex">\ </span> </a>
 <a class="sourceLine" id="cb1-3" title="3"><span class="ex">scripts/refine.sh</span> <span class="op">&gt;</span> <span class="va">$new_file</span>  </a></code></pre></div>
 <p>The next thing I discovered was <a href="http://eradman.com/entrproject/">entr</a>. It’s a tool that watches for file changes and performs commands you give it when one occurs.</p>
+<!-- ```{.bash .numberLines startFrom="100"} -->
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># automagically compile when a file in `src/` changes  </span></a>
 <a class="sourceLine" id="cb2-2" title="2"><span class="fu">ls</span> src/* <span class="kw">|</span> <span class="ex">entr</span> -p ./compile.sh  </a></code></pre></div>
 <p>A goal on the todo list is only compiling the files that were changed, or react to edge cases when two or more files need changing.</p>

@@ -27,6 +27,7 @@ With the website slowly evolving I needed some way to glue all the things togeth
 
 I should definetly learn to use grep/sed/awk for text search and manipulation. Second lesson, which may be even more important is [streams](https://youtu.be/bkgeFi4PwOg) in bash scripts. The time 'compiling' the whole site went from over 10 seconds to just about a second.
 
+<!-- ```{.bash .numberLines startFrom="100"} -->
 ```bash
 # a sample line from `scripts/process.sh`  
 scripts/add_checkboxes.sh $1 | pandoc -s --toc -c style.css --katex |\  
@@ -35,6 +36,7 @@ scripts/refine.sh > $new_file
 
 The next thing I discovered was [entr](http://eradman.com/entrproject/). It's a tool that watches for file changes and performs commands you give it when one occurs.
 
+<!-- ```{.bash .numberLines startFrom="100"} -->
 ```bash
 # automagically compile when a file in `src/` changes  
 ls src/* | entr -p ./compile.sh  
