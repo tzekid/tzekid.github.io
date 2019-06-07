@@ -7,7 +7,17 @@
 # if argument given, then only process that
 if [ "$1" ]; then
     if [[ "$1" == "--dev" ]]; then
-        goto dev
+        for file in src/*; do
+            if [[ $file != "src/_"* ]] && [[ $file != "src/home"* ]]; then
+                scripts/process.sh $file $1
+            fi
+        done
+
+        echo "Creating writings index..."
+        scripts/index_articles.sh src/home.html > src/home_indexed.html
+        scripts/process.sh src/home_indexed.html $1
+
+        exit 1
     fi
 
     scripts/process.sh $1
