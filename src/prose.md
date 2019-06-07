@@ -114,6 +114,20 @@ If you have some works of your own, feel free to hit me up, I'd be more than gla
     Dieses harmonischen Rabatzes, erläuternd,
     Und indessen auf den Irrtum der Menschheit hindeutend.
 
+# Some newer ones
+
+## A Stranger
+
+    A want from me would come as rude
+    A want from her'd be ridiculed •
+    A flirty look is what it takes
+    To catch her smile and gaze.
+
+    As my station's coming by
+    She delights me a "Goodbye" •
+    Letting the scenery develope
+    I'm left a heart of woe and hope.
+
 # A Barbaric Tale
 
 ## A Barbaric Tale - Prologue
