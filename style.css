@@ -233,15 +233,14 @@ body {
     letter-spacing: 1.2px;
     font-weight: 600;
 }
-.nav ul:hover {
-    color: #dd7c6f;
-    opacity: 0.7;
+/* .nav ul:hover {
+    opacity: 0.8;
 }
 .nav ul li a:focus,
 .nav ul li a:hover {
-    color:#751e12;
+    color:#6b0c00;
     opacity: 1;
-}
+} */
 @media screen and (max-width: 864px) {
     .logo {
         /* position: fixed; */
