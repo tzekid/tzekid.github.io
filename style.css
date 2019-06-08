@@ -193,7 +193,9 @@ body {
     margin-left: 32px;
     margin-top: 2px;
 }
-.logo a {
+.logo a,
+.logo a:hover,
+.logo a:active {
     color: #d64937;
     font-family: "Quando";
    /* text-transform: uppercase;
