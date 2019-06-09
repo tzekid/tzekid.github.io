@@ -41,7 +41,7 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
         output="$output\n$line\n$(cat src/_navigation.html)"
 
         if [[ "$1" == "--dev" ]]; then
-            output="$output<script>\
+            output="$output\n<script>\
 if (location.protocol !== 'https:') location.protocol = 'https:';</script>"
         fi
 
@@ -59,6 +59,7 @@ if (location.protocol !== 'https:') location.protocol = 'https:';</script>"
     elif [[ "$line" == *'</body>'* ]]; then
 
         if $is_home; then
+            output="$output\n$line"
             continue
         fi
 
