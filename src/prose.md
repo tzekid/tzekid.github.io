@@ -128,6 +128,16 @@ If you have some works of your own, feel free to hit me up, I'd be more than gla
     Letting the scenery develope
     I'm left a heart of woe and hope.
 
+## A thief
+
+    You stole my heart
+    You stole my breath •
+    Everything without regret.
+
+    I want it back
+    I want it double •
+    Lest I get myself in trouble.
+
 # A Barbaric Tale
 
 ## A Barbaric Tale - Prologue
