@@ -14,4 +14,3 @@ Lessons learned
   • entr(1) is awesome
   • wc exists. it counts stuff 
 
-(post v2)

@@ -1,4 +1,5 @@
 Tools needed:
+- entr
 - pandoc
 - local server application
 

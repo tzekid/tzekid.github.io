@@ -5,16 +5,17 @@ author: [Ilie Ploscaru]
 # keywords: [Markdown, Example]
 ...
 
-📖 I'm currently a full-time CS student at Goethe University Frankfurt.
+📖 Computer Science student at Goethe University Frankfurt with an interest in psychology and tech.  
 
-🖋 Writing is a big part of my life. I've also written some [prose](/prose) in the past.
+🐧 Currently flirting with Machine Learning and Existential Psychology.  
 
-🌐 I share my code on [GitHub](https://github.com/tzekid) and you can see photos I took on [Instagram](https://www.instagram.com/wkidu/).
-
-<!-- 🍀 If you want to know more about me, you can have a look at some of my [principles](/knowledge) I try to follow and my [impossible list](/impossible). -->
-
-💬 Feel free to ask me any question or [send a message](mailto:kid@cocaine.ninja).
+🖋 I've also written some random [prose](/prose) in the past.  
 
 ☕ I love meeting new people. Currently I reside in Frankfurt if you want to grab a coffee and talk.
 
-<!-- TODO: redo about ... sometime  -->
+💬 Feel free to get in touch by [sending me an email](mailto:kid@cocaine.ninja) or via [linkedin](https://www.linkedin.com/in/mircea-ilie-ploscaru-a020b584/).
+
+<br/>
+
+<div class='thingie' style='margin:auto;width:50%;'><div class="github-card" data-github="tzekid" data-width="320" data-height="120" data-theme="default"></div></div>
+<script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
