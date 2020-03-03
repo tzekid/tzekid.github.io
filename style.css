@@ -472,6 +472,7 @@ a:hover {
     margin-top: 12px;
     margin-bottom: 42px;
     font-family: "Quicksand", Arial, Helvetica, sans-serif;
+    text-align: center;
 }
 article {
     width: 740px;   
