@@ -18,4 +18,4 @@ author: [Ilie Ploscaru]
 <br/>
 
 <div class='thingie' style='margin:auto;width:50%;'><div class="github-card" data-github="tzekid" data-width="320" data-height="120" data-theme="default"></div></div>
-<script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+<script src="//phseiff.com/github-cards/widget.js"></script>
