@@ -10,10 +10,10 @@ Main goals are (a) to get rid of the pandoc dependency (because as of writing I 
 
 **TODO List** for the rewrite:  
 
-[ ] make use of templating  
-[ ] write articles in markdown  
-[ ] ability to expand on markdown, e.g. expanded md-syntax for stylized checkboxes  
-[ ] easy to setup on any system  
-[ ] rewrite CSS or simplify/refactor old CSS  
-[ ] create a better "about me" page  
-[ ] keep it lightweight (previously, index was ~100kb and 60kb gzipped, loaded unter 500ms from github servers)
+- [ ] make use of templating  
+- [ ] write articles in markdown  
+- [ ] ability to expand on markdown, e.g. expanded md-syntax for stylized checkboxes  
+- [ ] easy to setup on any system  
+- [ ] rewrite CSS or simplify/refactor old CSS  
+- [ ] create a better "about me" page  
+- [ ] keep it lightweight (previously, index was ~100kb and 60kb gzipped, loaded unter 500ms from github servers)
