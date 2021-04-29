@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ilie Ploscaru - Home</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.css">
+
+    <style>
+        .menu-icon {
+            /* <{ x }> */
+            margin-left: 2.1vw;
+            font-size: 2em;
+        }
+
+        hr.navbar-divider {
+            margin-left: calc(60vw + 3vw);
+        }
+
+        .navbar-start > * {
+            text-transform: uppercase;
+        }
+
+        :root {
+            --red: #d64937;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar" role="navigation" aria-label="main navigaton">
+        <div class="navbar-brand">
+            <a href="/" class="navbar-item menu-icon">
+                <{ x }>
+            </a>
+
+            <hr class="navbar-divider">
+
+            <div class="navbar-menu" id="navbarBasicExample">
+                <div class="navbar-start">
+                    <a href="#" class="navbar-item">about</a>
+                    <a href="#" class="navbar-item">projects</a>
+                    <a href="#" class="navbar-item">resume</a>
+                </div>
+
+
+            </div>
+
+            
+        </div>
+    </nav>
+
+    <section class="section">
+        <div class="container">
+            {% block content %} {% endblock %}
+        </div>
+    </section>
+</body>
+</html>
