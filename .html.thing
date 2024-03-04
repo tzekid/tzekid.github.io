@@ -19,7 +19,7 @@
  <![endif]-->
 </head>
 <body>
- <div class="container"> <nav class="nav"> <input type="checkbox" id="nav" class="hidden"> <label for="nav" class="nav-btn"> <i></i> <i></i> <i></i> </label> <div class="logo"> <a href="/"><{ tzekid }></a> </div> <div class="nav-wrapper"> <ul> <li><a href="/">Home</a></li> <li><a href="/about">About</a></li> <li><a href="/writings">Writings</a></li> <li><a href="/projects">Projects</a></li> </ul> </div> </nav> </div> 
+ <div class="container"> <nav class="nav"> <input type="checkbox" id="nav" class="hidden"> <label for="nav" class="nav-btn"> <i></i> <i></i> <i></i> </label> <div class="logo"> <a href="/"><{ tzekid }></a> </div> <div class="nav-wrapper"> <ul> <li><a href="/">Home</a></li> <li><a href="/about.html">About</a></li> <li><a href="/writings">Writings</a></li> <li><a href="/projects">Projects</a></li> </ul> </div> </nav> </div> 
 <article>
 
 </article>
